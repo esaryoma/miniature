@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int playerName;
-    [SerializeField] private int endurance;
-    [SerializeField] private int wounds;
-    [SerializeField] private int resolve;
+    public string playerName;
+    public int endurance;
+    public int wounds;
+    public int resolve;
     [SerializeField] public List<SkillCard> skillCards;
 
     // Start is called before the first frame update
