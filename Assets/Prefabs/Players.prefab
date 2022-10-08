@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 8174459849782061339}
   - component: {fileID: 3922375509820042691}
   m_Layer: 0
-  m_Name: ricochet
+  m_Name: superheroLanding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9803fa50a2e890c40bb1db985d981891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: basic
+  skillName: ricochet
   damage: 2
   areaOfEffect: 0
   playerMove: 0
@@ -668,7 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9803fa50a2e890c40bb1db985d981891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: basic
+  skillName: bleed
   damage: 0
   areaOfEffect: 0
   playerMove: 0
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9803fa50a2e890c40bb1db985d981891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: basic
+  skillName: bleed
   damage: 0
   areaOfEffect: 0
   playerMove: 0
