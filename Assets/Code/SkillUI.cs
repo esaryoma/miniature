@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class SkillCard : MonoBehaviour
+public class SkillUI : MonoBehaviour
 {
-    public string skillCardName;
-    public List<Skill> skills;
+    public TextMeshProUGUI skillNameUItext;
+    public TextMeshProUGUI skillUItext;
 
     // Start is called before the first frame update
     void Start()
