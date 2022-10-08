@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
-    [SerializeField] private int playerName;
-    [SerializeField] private int endurance;
-    [SerializeField] private int wounds;
-    [SerializeField] private int resolve;
+    [SerializeField] private string playerClass;
     [SerializeField] public List<SkillCard> skillCards;
 
     // Start is called before the first frame update

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
-    [SerializeField] private string skillName;
-    [SerializeField] private int damage;
-    [SerializeField] private int areaOfEffect;
-    [SerializeField] private int playerMove;
-    [SerializeField] private int targetMove;
-    [SerializeField] private int wound;
-    [SerializeField] private int range;
+    [SerializeField] public string skillName;
+    [SerializeField] public int damage;
+    [SerializeField] public int areaOfEffect;
+    [SerializeField] public int playerMove;
+    [SerializeField] public int targetMove;
+    [SerializeField] public int wound;
+    [SerializeField] public int range;
+    [SerializeField] public Status status;
+    [SerializeField] public int pierceArmor;
 
     // Start is called before the first frame update
     void Start()
