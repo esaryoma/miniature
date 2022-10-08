@@ -13,7 +13,33 @@ public class Skill : MonoBehaviour
     [SerializeField] public int range;
     [SerializeField] public Status status;
     [SerializeField] public int pierceArmor;
+    [SerializeField] public string freeText;
 
+     public enum TargetType
+    {
+        Friendly,
+        Enemy,
+        Any
+    }
+
+    public TargetType targetType;
+
+    public enum SkillType
+    {
+        // skillName, damage, areaOfEffect, wound, range, status.statusType, status.length, pierceArmor
+        Damage,
+
+        // targetMove, range
+        TargetMove,
+
+        // playerMove, range
+        PlayerMove,
+
+        // status
+        StatusOnly
+    }
+
+    public SkillType skillType;
     // Start is called before the first frame update
     void Start()
     {
