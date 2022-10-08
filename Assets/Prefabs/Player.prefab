@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6279715122329631599}
+  - component: {fileID: 5563008157378177214}
   m_Layer: 0
   m_Name: Skillcard
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 5389597359944517454}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5563008157378177214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074514624443303663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e376f34aa61ae1548aa66be6df25c93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skills: []
 --- !u!1 &2944507067177183961
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,6 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6216419117788406180}
+  - component: {fileID: 1887976301101435886}
   m_Layer: 0
   m_Name: Skill
   m_TagString: Untagged
@@ -63,6 +78,24 @@ Transform:
   m_Father: {fileID: 6279715122329631599}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1887976301101435886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2944507067177183961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9803fa50a2e890c40bb1db985d981891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  areaOfEffect: 0
+  playerMove: 0
+  targetMove: 0
+  wound: 0
+  range: 0
 --- !u!1 &4005526893074790141
 GameObject:
   m_ObjectHideFlags: 0
