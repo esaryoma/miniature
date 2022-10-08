@@ -99,13 +99,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   slot1probabilities:
-  - 100
+  - 80
   - 60
   - 40
   slot2probabilities:
-  - 100
+  - 80
   - 60
   - 40
-  slot3probabilities: []
+  slot3probabilities:
+  - 80
+  - 60
+  - 40
   slot4probabilities: []
   slot5probabilities: []
+  propabilitySprites: []
+  uiMode: 0
+  players:
+  - {fileID: 0}
+  skillCardUIPrefab: {fileID: 4809050522759261885, guid: f3237d8fc0fb36744a50d68474252064, type: 3}
+  skillUIPrefab: {fileID: 313765569235702312, guid: 1da95d085eee8374cbdf8dd0690f40b1, type: 3}
+  skillCardUIparent: {fileID: 0}
+  skillCardUIcloseUp: {fileID: 0}
+  bgDimmer: {fileID: 0}
+  currentPlayerNameUItext: {fileID: 0}
+  currentPlayerEnduranceUItext: {fileID: 0}
+  currentPlayerResolveUItext: {fileID: 0}
+  currentPlayerWoundsUItext: {fileID: 0}

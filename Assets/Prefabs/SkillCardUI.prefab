@@ -309,6 +309,7 @@ MonoBehaviour:
   - {fileID: 3756780865756721655}
   - {fileID: 458200771235956392}
   skillsParent: {fileID: 486255982}
+  skillCard: {fileID: 0}
 --- !u!1 &7908170774256175605
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +468,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillUI (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5217352330220821057, guid: 1da95d085eee8374cbdf8dd0690f40b1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5554138821789345366, guid: 1da95d085eee8374cbdf8dd0690f40b1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -589,6 +594,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5217352330220821057, guid: 1da95d085eee8374cbdf8dd0690f40b1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5554138821789345366, guid: 1da95d085eee8374cbdf8dd0690f40b1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -710,6 +719,10 @@ PrefabInstance:
     - target: {fileID: 313765569235702312, guid: 1da95d085eee8374cbdf8dd0690f40b1, type: 3}
       propertyPath: m_Name
       value: SkillUI (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217352330220821057, guid: 1da95d085eee8374cbdf8dd0690f40b1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5554138821789345366, guid: 1da95d085eee8374cbdf8dd0690f40b1, type: 3}
       propertyPath: m_Pivot.x

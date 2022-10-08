@@ -5,14 +5,17 @@ using TMPro;
 
 public class Control : MonoBehaviour
 {
-    public static Control control;
-    public float damage;
-
+    public static Control control; 
     public List<float> slot1probabilities;
     public List<float> slot2probabilities;
     public List<float> slot3probabilities;
     public List<float> slot4probabilities;
     public List<float> slot5probabilities;
+
+    public List<Sprite> propabilitySprites;
+    public List<Sprite> skillPriceSprites;
+
+    public int currentCharacterIndex = 0;
 
     public enum UImode
     {
@@ -48,32 +51,74 @@ public class Control : MonoBehaviour
     {
         
     }
+     
+    public void UpdateCurrentCharView()
+    {
+        currentPlayerNameUItext.text = players[currentCharacterIndex].charName;
+        currentPlayerEnduranceUItext.text = players[currentCharacterIndex].endurance.ToString();
+        currentPlayerResolveUItext.text = players[currentCharacterIndex].resolve.ToString();
+        currentPlayerWoundsUItext.text = players[currentCharacterIndex].wounds.ToString();
+    }
 
     public void CloseCardCloseUp()
     {
         if (Control.control.uiMode == Control.UImode.PlayerSkillCardCloseUp)
         {
             Control.control.uiMode = Control.UImode.PlayerTurn;
-            skillCardUIcloseUp.gameObject.SetActive(false);
+            skillCardUIcloseUp.CloseCloseUp();
             bgDimmer.SetActive(false);
         }
     }
-    public void InitializeCardCloseUp(SkillCard skillCard)
+    public void InitializeCardCloseUp(SkillCardUI skillCardUI)
     {
         Control.control.skillCardUIcloseUp.gameObject.SetActive(true);
         bgDimmer.SetActive(true);
-        InitializeSkillCardUI(players[0], skillCard, true);
+        InitializeSkillCardUI(players[0], skillCardUI.skillCard, true);
         uiMode = UImode.PlayerSkillCardCloseUp;
+        InitializePropabilityImages(skillCardUI);
+    }
+
+    void InitializePropabilityImages(SkillCardUI skillCardUI)
+    {
+        int i = skillCardUI.transform.GetSiblingIndex();
+
+        List<float> probs = new List<float>();
+
+        switch (i)
+        {
+            case 0:
+                probs = slot1probabilities;
+                break;
+            case 1:
+                probs = slot2probabilities;
+                break;
+            case 2:
+                probs = slot3probabilities;
+                break;
+            case 3:
+                probs = slot4probabilities;
+                break;
+            case 4:
+                probs = slot5probabilities;
+                break;
+        }
+
+        for (int ii = 0; ii < 3; ii++)
+        {
+            SkillUI s = skillCardUIcloseUp.skillUIs[ii].GetComponent<SkillUI>();
+
+            s.propabilityImage.sprite = propabilitySprites[3];
+            if (probs[ii] > 25f) { s.propabilityImage.sprite = propabilitySprites[0]; }
+            if (probs[ii] > 50f) { s.propabilityImage.sprite = propabilitySprites[1]; }
+            if (probs[ii] > 75f) { s.propabilityImage.sprite = propabilitySprites[2]; }
+        }
     }
 
     void InitializePlayerTurn(Player player)
     {
         float proportion = skillCardUIPrefab.GetComponent<RectTransform>().rect.width / skillCardUIPrefab.GetComponent<RectTransform>().rect.height;
 
-        currentPlayerNameUItext.text = player.charName;
-        currentPlayerEnduranceUItext.text = player.endurance.ToString();
-        currentPlayerResolveUItext.text = player.resolve.ToString();
-        currentPlayerWoundsUItext.text = player.wounds.ToString();
+        UpdateCurrentCharView();
 
         for (int i = 0; i < player.skillCards.Count; i++)
         {
