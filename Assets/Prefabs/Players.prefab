@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &650848608778382681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5598532326156146629}
+  - component: {fileID: 5723374447975075373}
+  m_Layer: 0
+  m_Name: push
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5598532326156146629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650848608778382681}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2745887630002639186}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5723374447975075373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650848608778382681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9803fa50a2e890c40bb1db985d981891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Basic
+  damage: 0
+  areaOfEffect: 0
+  playerMove: 0
+  targetMove: 3
+  wound: 0
+  range: 0
+  status: {fileID: 0}
+  pierceArmor: 0
 --- !u!1 &1155724825596640457
 GameObject:
   m_ObjectHideFlags: 0
@@ -53,6 +106,59 @@ MonoBehaviour:
   range: 0
   status: {fileID: 0}
   pierceArmor: 0
+--- !u!1 &1220409221959448584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8174459849782061339}
+  - component: {fileID: 3922375509820042691}
+  m_Layer: 0
+  m_Name: ricochet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8174459849782061339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220409221959448584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2700558585217201872}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3922375509820042691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220409221959448584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9803fa50a2e890c40bb1db985d981891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: basic
+  damage: 2
+  areaOfEffect: 0
+  playerMove: 0
+  targetMove: 0
+  wound: 0
+  range: 3
+  status: {fileID: 0}
+  pierceArmor: 0
 --- !u!1 &1415079393516435450
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +210,9 @@ MonoBehaviour:
   skillCardName: Bow
   skills:
   - {fileID: 7027110025786915842}
+  - {fileID: 6693650726591071252}
+  - {fileID: 1926230078835213097}
+  - {fileID: 8282633218927378952}
 --- !u!1 &2151490924727419109
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +259,113 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusType: bleed
   length: 1
+--- !u!1 &2816353355787125629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2700558585217201872}
+  - component: {fileID: 1552670218566219953}
+  m_Layer: 0
+  m_Name: levitate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2700558585217201872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2816353355787125629}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5177212287110888799}
+  - {fileID: 3277939898131301514}
+  - {fileID: 1408668433523472644}
+  - {fileID: 8174459849782061339}
+  m_Father: {fileID: 4320904637718277491}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1552670218566219953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2816353355787125629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e376f34aa61ae1548aa66be6df25c93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillCardName: Levitate
+  skills:
+  - {fileID: 3748436576719603773}
+  - {fileID: 6073387775988686489}
+  - {fileID: 1077506445767345339}
+  - {fileID: 3922375509820042691}
+--- !u!1 &2956388104235886231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5177212287110888799}
+  - component: {fileID: 3748436576719603773}
+  m_Layer: 0
+  m_Name: basic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5177212287110888799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2956388104235886231}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2700558585217201872}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3748436576719603773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2956388104235886231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9803fa50a2e890c40bb1db985d981891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: basic
+  damage: 2
+  areaOfEffect: 0
+  playerMove: 0
+  targetMove: 0
+  wound: 0
+  range: 0
+  status: {fileID: 0}
+  pierceArmor: 0
 --- !u!1 &3227717319739000720
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +419,52 @@ MonoBehaviour:
   range: 0
   status: {fileID: 0}
   pierceArmor: -1
+--- !u!1 &4039740328707974323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4880833615652384064}
+  - component: {fileID: 8378328982316351254}
+  m_Layer: 0
+  m_Name: bleed2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4880833615652384064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039740328707974323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1408668433523472644}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8378328982316351254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039740328707974323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77a45d0b264cf54ebbd66dde1ee2ca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusType: bleed
+  length: 2
 --- !u!1 &4224189978149575514
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,9 +547,56 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4773839920480727900}
+  - {fileID: 4320904637718277491}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4637334359745814435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 817788238332543172}
+  - component: {fileID: 9220654103307231639}
+  m_Layer: 0
+  m_Name: bleed1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &817788238332543172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4637334359745814435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6555103062445639265}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9220654103307231639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4637334359745814435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77a45d0b264cf54ebbd66dde1ee2ca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusType: bleed
+  length: 1
 --- !u!1 &4697724591949184218
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,6 +696,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusType: bleed
   length: 2
+--- !u!1 &5339810471468452488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1408668433523472644}
+  - component: {fileID: 1077506445767345339}
+  m_Layer: 0
+  m_Name: bleed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1408668433523472644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5339810471468452488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4880833615652384064}
+  m_Father: {fileID: 2700558585217201872}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1077506445767345339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5339810471468452488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9803fa50a2e890c40bb1db985d981891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: basic
+  damage: 0
+  areaOfEffect: 0
+  playerMove: 0
+  targetMove: 0
+  wound: 0
+  range: 0
+  status: {fileID: 8378328982316351254}
+  pierceArmor: 0
 --- !u!1 &5925590870362075878
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +801,112 @@ MonoBehaviour:
   targetMove: 0
   wound: 0
   range: 0
+  status: {fileID: 0}
+  pierceArmor: 0
+--- !u!1 &6096462507753193808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3277939898131301514}
+  - component: {fileID: 6073387775988686489}
+  m_Layer: 0
+  m_Name: pierce
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3277939898131301514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6096462507753193808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2700558585217201872}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6073387775988686489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6096462507753193808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9803fa50a2e890c40bb1db985d981891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Pierce
+  damage: 0
+  areaOfEffect: 0
+  playerMove: 0
+  targetMove: 0
+  wound: 0
+  range: 0
+  status: {fileID: 0}
+  pierceArmor: -1
+--- !u!1 &6499367440407653116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6730629527497931010}
+  - component: {fileID: 6637619269182940667}
+  m_Layer: 0
+  m_Name: cleave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6730629527497931010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6499367440407653116}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2745887630002639186}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6637619269182940667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6499367440407653116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9803fa50a2e890c40bb1db985d981891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Basic
+  damage: 3
+  areaOfEffect: 0
+  playerMove: 0
+  targetMove: 0
+  wound: 0
+  range: 1
   status: {fileID: 0}
   pierceArmor: 0
 --- !u!1 &7838424568708714619
@@ -493,6 +962,60 @@ MonoBehaviour:
   wound: 0
   range: 0
   status: {fileID: 8429042871994905758}
+  pierceArmor: 0
+--- !u!1 &7942328295951034371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6555103062445639265}
+  - component: {fileID: 1709587602401046489}
+  m_Layer: 0
+  m_Name: slash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6555103062445639265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7942328295951034371}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 817788238332543172}
+  m_Father: {fileID: 2745887630002639186}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1709587602401046489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7942328295951034371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9803fa50a2e890c40bb1db985d981891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: slash
+  damage: 0
+  areaOfEffect: 0
+  playerMove: 0
+  targetMove: 0
+  wound: 0
+  range: 0
+  status: {fileID: 9220654103307231639}
   pierceArmor: 0
 --- !u!1 &8195939831126174217
 GameObject:
@@ -717,3 +1240,176 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6279715122329631599, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
   m_PrefabInstance: {fileID: 615766245290374162}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8159781323740375613
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8752516036595842869}
+    m_Modifications:
+    - target: {fileID: 1887976301101435886, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: range
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887976301101435886, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: damage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887976301101435886, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: skillName
+      value: Basic
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074514624443303663, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_Name
+      value: fireball
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944507067177183961, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_Name
+      value: basic
+      objectReference: {fileID: 0}
+    - target: {fileID: 4005526893074790141, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_Name
+      value: mage
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389597359944517454, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389597359944517454, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 467.64417
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389597359944517454, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 380.02893
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389597359944517454, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.115019
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389597359944517454, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389597359944517454, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389597359944517454, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389597359944517454, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389597359944517454, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389597359944517454, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389597359944517454, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563008157378177214, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: name
+      value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563008157378177214, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: skillCardName
+      value: Fireball
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563008157378177214, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: skills.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563008157378177214, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: skills.Array.data[0]
+      value: 
+      objectReference: {fileID: 7714153311685353939}
+    - target: {fileID: 5563008157378177214, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: skills.Array.data[1]
+      value: 
+      objectReference: {fileID: 1709587602401046489}
+    - target: {fileID: 5563008157378177214, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: skills.Array.data[2]
+      value: 
+      objectReference: {fileID: 5723374447975075373}
+    - target: {fileID: 5563008157378177214, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: skills.Array.data[3]
+      value: 
+      objectReference: {fileID: 6637619269182940667}
+    - target: {fileID: 6744611664517607683, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: wounds
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744611664517607683, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: resolve
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744611664517607683, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: charName
+      value: Makeman
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744611664517607683, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: endurance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744611664517607683, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: playerName
+      value: Fighterimurjaani
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744611664517607683, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: playerClass
+      value: mage
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744611664517607683, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: skillCards.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744611664517607683, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: skillCards.Array.data[0]
+      value: 
+      objectReference: {fileID: 4327567335822525059}
+    - target: {fileID: 6744611664517607683, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: skillCards.Array.data[1]
+      value: 
+      objectReference: {fileID: 1552670218566219953}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+--- !u!4 &2745887630002639186 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6279715122329631599, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+  m_PrefabInstance: {fileID: 8159781323740375613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4320904637718277491 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5389597359944517454, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+  m_PrefabInstance: {fileID: 8159781323740375613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4327567335822525059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5563008157378177214, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+  m_PrefabInstance: {fileID: 8159781323740375613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e376f34aa61ae1548aa66be6df25c93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7714153311685353939 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1887976301101435886, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+  m_PrefabInstance: {fileID: 8159781323740375613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9803fa50a2e890c40bb1db985d981891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
