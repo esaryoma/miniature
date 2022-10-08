@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
+    [SerializeField] private string skillName;
     [SerializeField] private int damage;
     [SerializeField] private int areaOfEffect;
     [SerializeField] private int playerMove;
