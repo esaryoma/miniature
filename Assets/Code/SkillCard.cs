@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SkillCard : MonoBehaviour
 {
-    [SerializeField] private List<Skill> skills;
-    
+    [SerializeField] public List<Skill> skills;
+
     // Start is called before the first frame update
     void Start()
     {
