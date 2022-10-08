@@ -1040,12 +1040,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6744611664517607683, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
       propertyPath: skillCards.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6744611664517607683, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
       propertyPath: skillCards.Array.data[0]
       value: 
       objectReference: {fileID: 5023873492216781996}
+    - target: {fileID: 6744611664517607683, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
+      propertyPath: skillCards.Array.data[1]
+      value: 
+      objectReference: {fileID: 1267455529551308729}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5be8228370fdbce4e97b3713af111551, type: 3}
 --- !u!114 &1349061538538110972 stripped

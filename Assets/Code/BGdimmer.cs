@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class SkillCard : MonoBehaviour 
+public class BGdimmer : MonoBehaviour, IPointerClickHandler
 {
-    public string skillCardName;
-    public List<Skill> skills;
-
-    public int priceOfSelectedSkills = 0;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +15,10 @@ public class SkillCard : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnPointerClick(PointerEventData eventData) // 3
+    {       
+            Control.control.CloseCardCloseUp();
     }
 }
