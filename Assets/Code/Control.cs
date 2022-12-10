@@ -47,8 +47,14 @@ public class Control : MonoBehaviour
     void Awake()
     {
         control = this;
+    }
+
+    private void Start()
+    {
+
         InitializePlayerTurn(players[0]);
         InitializeEnemies();
+        TurnTrackUI.turnTrackUI.InitializeRound();
     }
 
     // Update is called once per frame

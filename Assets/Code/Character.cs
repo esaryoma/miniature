@@ -13,6 +13,14 @@ public class Character : MonoBehaviour
     // resource for skills and abilities
     [SerializeField] public int resolve;
 
+    public enum CharacterType 
+    {
+        Player,
+        Enemy
+    }
+
+    public CharacterType characterType;
+
     // Start is called before the first frame update
     void Start()
     {
