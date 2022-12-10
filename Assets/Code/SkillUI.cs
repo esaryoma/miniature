@@ -39,7 +39,7 @@ public class SkillUI : MonoBehaviour, IPointerClickHandler
         {
             SetState(SkillState.Selected);
             GetComponent<Image>().color = new Color(Color.magenta.r, Color.magenta.g, Color.magenta.b, 0.5f);
-            Control.control.players[Control.control.currentCharacterIndex].resolve = Control.control.players[Control.control.currentCharacterIndex].resolve - resolvePrice;
+            Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve - resolvePrice;
             Control.control.UpdateCurrentCharView();
             skillCardUI.CheckSkillAvailabilityInCloseUp();
             gameObject.GetComponent<SkillUI>().propabilityImage.enabled = false;
@@ -52,7 +52,7 @@ public class SkillUI : MonoBehaviour, IPointerClickHandler
             SetState(SkillState.NotSelected);
             gameObject.GetComponent<SkillUI>().propabilityImage.enabled = true;
             GetComponent<Image>().color = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
-            Control.control.players[Control.control.currentCharacterIndex].resolve = Control.control.players[Control.control.currentCharacterIndex].resolve + resolvePrice;
+            Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve + resolvePrice;
             Control.control.UpdateCurrentCharView();
             skillCardUI.CheckSkillAvailabilityInCloseUp();
             Control.control.CheckIfReadyToConfirmSkills();
@@ -64,7 +64,7 @@ public class SkillUI : MonoBehaviour, IPointerClickHandler
             SetState(SkillState.NotSelected);
             gameObject.GetComponent<SkillUI>().propabilityImage.enabled = true;
             GetComponent<Image>().color = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
-            Control.control.players[Control.control.currentCharacterIndex].resolve = Control.control.players[Control.control.currentCharacterIndex].resolve + resolvePrice;
+            Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve + resolvePrice;
             Control.control.UpdateCurrentCharView();
             skillCardUI.CheckSkillAvailabilityInCloseUp();
             Control.control.CheckIfReadyToConfirmSkills();

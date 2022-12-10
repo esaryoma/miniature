@@ -18,7 +18,7 @@ public class SkillCardUI : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -51,7 +51,7 @@ public class SkillCardUI : MonoBehaviour, IPointerClickHandler
                 skillUIs[i].SetState(SkillUI.SkillState.NotSelected);
                 skillUIs[i].gameObject.GetComponent<SkillUI>().propabilityImage.enabled = true;
                 skillUIs[i].GetComponent<Image>().color = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
-                Control.control.players[Control.control.currentCharacterIndex].resolve = Control.control.players[Control.control.currentCharacterIndex].resolve + skillUIs[i].resolvePrice;
+                Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve + skillUIs[i].resolvePrice;
             }
 
             if (skillUIs[i].skillState == SkillUI.SkillState.Disabled)
@@ -72,7 +72,7 @@ public class SkillCardUI : MonoBehaviour, IPointerClickHandler
     {
         for (int i = 0;i<skillUIs.Count;i++)
         {
-            if (skillUIs[i].resolvePrice > Control.control.players[Control.control.currentCharacterIndex].resolve)
+            if (skillUIs[i].resolvePrice > Control.control.players[Control.control.currentPlayerCharacterIndex].resolve)
             {
                 if (skillUIs[i].skillState == SkillUI.SkillState.NotSelected)
                 {

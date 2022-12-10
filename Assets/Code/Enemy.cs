@@ -12,6 +12,15 @@ public class Enemy : Character
         Guard
     }
 
+    public enum CharacterClass
+    {
+        Melee,
+        Ranged,
+        Magic
+    }
+
+    public CharacterClass characterClass;
+
     // how to switch between reaction/behaviorstrategies when enemy switces States (hunter, patrol, guard)?
     // reactions/behaviors might be ScribtableObjects which are one way to simply store data?
     [SerializeField] public ReactionStrategyImpl hunterReactionStrategy;
@@ -30,6 +39,8 @@ public class Enemy : Character
     // Passive enemy properties which are good to add to a separate visible list for players to take account when eg. moving
     // data type not defined, we'll see how this goes
     [SerializeField] public string noticeableSkills;
+
+    public Color colorInUI;
 
     // Start is called before the first frame update
     void Start()

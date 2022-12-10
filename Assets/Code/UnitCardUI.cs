@@ -9,11 +9,12 @@ public class UnitCardUI : MonoBehaviour, IPointerClickHandler
 {
 
     public Character character;
+    public Image cardBG;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        cardBG.color = Color.gray;
     }
 
     // Update is called once per frame
@@ -24,18 +25,25 @@ public class UnitCardUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData) // 3
     {
-        if (Control.control.selectedEnemies.Contains(character as Enemy))
-        {
-            Control.control.selectedEnemies.Remove(character as Enemy);
-        }
-        else
-        {
-            Control.control.selectedEnemies.Add(character as Enemy);
-        }
+
 
         switch (Control.control.uiMode)
         {
             case Control.UImode.PlayerSkillCardCloseUp:
+
+
+                if (Control.control.selectedEnemies.Contains(character as Enemy))
+                {
+                    Control.control.selectedEnemies.Remove(character as Enemy);
+                    cardBG.color = Color.gray;
+                }
+                else
+                {
+                    Control.control.selectedEnemies.Add(character as Enemy);
+                    cardBG.color = Color.white;
+                }
+
+
                 Control.control.CheckIfReadyToConfirmSkills();
                 break;
         } 
