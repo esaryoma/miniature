@@ -26,12 +26,16 @@ public class Control : MonoBehaviour
     public UImode uiMode = UImode.PlayerTurn;
 
     public List<Player> players;
+    public List<Enemy> enemies;
 
     [SerializeField] GameObject skillCardUIPrefab;
     [SerializeField] GameObject skillUIPrefab;
+    [SerializeField] GameObject unitCardUIPrefab;
     public RectTransform skillCardUIparent;
+    public RectTransform unitCardUIparent;
 
     public SkillCardUI skillCardUIcloseUp;
+    public SkillCard skillCardInCloseUp;
     public GameObject bgDimmer;
 
     public TextMeshProUGUI currentPlayerNameUItext;
@@ -44,6 +48,7 @@ public class Control : MonoBehaviour
     {
         control = this;
         InitializePlayerTurn(players[0]);
+        InitializeEnemies();
     }
 
     // Update is called once per frame
@@ -67,21 +72,30 @@ public class Control : MonoBehaviour
             Control.control.uiMode = Control.UImode.PlayerTurn;
             skillCardUIcloseUp.CloseCloseUp();
             bgDimmer.SetActive(false);
+            skillCardInCloseUp = null;
         }
     }
-    public void InitializeCardCloseUp(SkillCardUI skillCardUI)
+    public void InitializeCardCloseUp(SkillCardUI skillCardUI, int siblingIndex)
     {
         Control.control.skillCardUIcloseUp.gameObject.SetActive(true);
         bgDimmer.SetActive(true);
         InitializeSkillCardUI(players[0], skillCardUI.skillCard, true);
         uiMode = UImode.PlayerSkillCardCloseUp;
-        InitializePropabilityImages(skillCardUI);
+        InitializePropabilityImages(skillCardUI, siblingIndex);
     }
 
-    void InitializePropabilityImages(SkillCardUI skillCardUI)
+    public void InitializeEnemies()
     {
-        int i = skillCardUI.transform.GetSiblingIndex();
+    foreach (Enemy e in enemies)
+        {
+            GameObject g = GameObject.Instantiate(unitCardUIPrefab, unitCardUIparent);           
+        }
+    }
 
+    void InitializePropabilityImages(SkillCardUI skillCardUI, int siblingIndex)
+    {
+        int i = siblingIndex;
+        Debug.Log(i);
         List<float> probs = new List<float>();
 
         switch (i)
@@ -106,7 +120,6 @@ public class Control : MonoBehaviour
         for (int ii = 0; ii < 3; ii++)
         {
             SkillUI s = skillCardUIcloseUp.skillUIs[ii].GetComponent<SkillUI>();
-
             s.propabilityImage.sprite = propabilitySprites[3];
             if (probs[ii] > 25f) { s.propabilityImage.sprite = propabilitySprites[0]; }
             if (probs[ii] > 50f) { s.propabilityImage.sprite = propabilitySprites[1]; }
@@ -145,14 +158,23 @@ public class Control : MonoBehaviour
         SkillCardUI skillCardUI = t.GetComponent<SkillCardUI>();
         skillCardUI.skillCard = skillCard;
         skillCardUI.SkillCardName.text = skillCard.skillCardName;
-        skillCardUI.baseSkillText.text = ParseSkillText(skillCard.skills[0]); 
+        skillCardUI.baseSkillText.text = ParseSkillText(skillCard.skills[0]);
+         
 
         for (int ii = 1; ii < skillCard.skills.Count; ii++)
         {
             SkillUI s = skillCardUI.skillUIs[ii - 1].GetComponent<SkillUI>();
             s.skillNameUItext.text = skillCard.skills[ii].name;
             s.skillUItext.text = ParseSkillText(skillCard.skills[ii]);
-        }
+            s.skill = skillCard.skills[ii];
+
+            if (!closeUp)
+            {
+                s.enabled = false;
+            }
+        } 
+
+        skillCardInCloseUp = skillCard;
     }
 
 

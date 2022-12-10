@@ -15,7 +15,7 @@ public class Enemy : Character
 
     //public NpcBehaviorStrategy behaviorStrategy;
     [SerializeField] public int shieldPoints;
-    
+     
     public enum State
     {
         Hunter,

@@ -4,17 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using System.Xml;
 
 public class SkillCardUI : MonoBehaviour, IPointerClickHandler
 {
 
     public TextMeshProUGUI SkillCardName;
     public TextMeshProUGUI baseSkillText;
-    public List<RectTransform> skillUIs;
+    public List<SkillUI> skillUIs;
     public RectTransform skillsParent;
     public SkillCard skillCard;
-
-    public List<SelectableSkillUI> selectableSkillUIs;
 
     // Start is called before the first frame update
     void Start()
@@ -28,21 +27,36 @@ public class SkillCardUI : MonoBehaviour, IPointerClickHandler
 
     }
 
+    public List<Skill> ReturnSelectedSkills()
+    {
+        List<Skill> skillsSelected = new List<Skill>();
+
+        for(int i=0;i<skillUIs.Count;i++)
+        {
+            if (skillUIs[i].gameObject.activeSelf && skillUIs[i].skillState == SkillUI.SkillState.Selected)
+            {
+                skillsSelected.Add(skillUIs[i].GetComponent<SkillUI>().skill);
+            }
+        }
+
+        return skillsSelected;
+    }
+
     public void CloseCloseUp()
     {
-        for (int i = 0; i < selectableSkillUIs.Count; i++)
+        for (int i = 0; i < skillUIs.Count; i++)
         {
-            if (selectableSkillUIs[i].skillState == SelectableSkillUI.SkillState.Selected || selectableSkillUIs[i].skillState == SelectableSkillUI.SkillState.DisabledAndBought)
+            if (skillUIs[i].skillState == SkillUI.SkillState.Selected || skillUIs[i].skillState == SkillUI.SkillState.DisabledAndBought)
             {
-                selectableSkillUIs[i].SetState(SelectableSkillUI.SkillState.NotSelected);
-                selectableSkillUIs[i].gameObject.GetComponent<SkillUI>().propabilityImage.enabled = true;
-                selectableSkillUIs[i].GetComponent<Image>().color = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
-                Control.control.players[Control.control.currentCharacterIndex].resolve = Control.control.players[Control.control.currentCharacterIndex].resolve + selectableSkillUIs[i].resolvePrice;
+                skillUIs[i].SetState(SkillUI.SkillState.NotSelected);
+                skillUIs[i].gameObject.GetComponent<SkillUI>().propabilityImage.enabled = true;
+                skillUIs[i].GetComponent<Image>().color = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
+                Control.control.players[Control.control.currentCharacterIndex].resolve = Control.control.players[Control.control.currentCharacterIndex].resolve + skillUIs[i].resolvePrice;
             }
 
-            if (selectableSkillUIs[i].skillState == SelectableSkillUI.SkillState.Disabled)
+            if (skillUIs[i].skillState == SkillUI.SkillState.Disabled)
             {
-                selectableSkillUIs[i].SetState(SelectableSkillUI.SkillState.NotSelected);
+                skillUIs[i].SetState(SkillUI.SkillState.NotSelected);
             }
         }
         Control.control.UpdateCurrentCharView();
@@ -51,35 +65,35 @@ public class SkillCardUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData) // 3
     {
-        Control.control.InitializeCardCloseUp(this);
+        if (Control.control.uiMode == Control.UImode.PlayerTurn) { Control.control.InitializeCardCloseUp(this, transform.GetSiblingIndex()); }
     }
 
     public void CheckSkillAvailabilityInCloseUp()
     {
-        for (int i = 0;i<selectableSkillUIs.Count;i++)
+        for (int i = 0;i<skillUIs.Count;i++)
         {
-            if (selectableSkillUIs[i].resolvePrice > Control.control.players[Control.control.currentCharacterIndex].resolve)
+            if (skillUIs[i].resolvePrice > Control.control.players[Control.control.currentCharacterIndex].resolve)
             {
-                if (selectableSkillUIs[i].skillState == SelectableSkillUI.SkillState.NotSelected)
+                if (skillUIs[i].skillState == SkillUI.SkillState.NotSelected)
                 {
-                    selectableSkillUIs[i].SetState(SelectableSkillUI.SkillState.Disabled);
+                    skillUIs[i].SetState(SkillUI.SkillState.Disabled);
                 }
 
-                if (selectableSkillUIs[i].skillState == SelectableSkillUI.SkillState.Selected)
+                if (skillUIs[i].skillState == SkillUI.SkillState.Selected)
                 {
-                    selectableSkillUIs[i].SetState(SelectableSkillUI.SkillState.DisabledAndBought);
+                    skillUIs[i].SetState(SkillUI.SkillState.DisabledAndBought);
                 }
             }
             else
             {
-                if (selectableSkillUIs[i].skillState == SelectableSkillUI.SkillState.Disabled)
+                if (skillUIs[i].skillState == SkillUI.SkillState.Disabled)
                 {
-                    selectableSkillUIs[i].SetState(SelectableSkillUI.SkillState.NotSelected);
+                    skillUIs[i].SetState(SkillUI.SkillState.NotSelected);
                 }
 
-                if (selectableSkillUIs[i].skillState == SelectableSkillUI.SkillState.DisabledAndBought)
+                if (skillUIs[i].skillState == SkillUI.SkillState.DisabledAndBought)
                 {
-                    selectableSkillUIs[i].SetState(SelectableSkillUI.SkillState.Selected);
+                    skillUIs[i].SetState(SkillUI.SkillState.Selected);
                 }
             }
         }
