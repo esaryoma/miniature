@@ -12,6 +12,8 @@ public class Character : MonoBehaviour
     [SerializeField] public int wounds;
     // resource for skills and abilities
     [SerializeField] public int resolve;
+    [SerializeField] public List<Status> statuses;
+
 
     public enum CharacterType 
     {
@@ -20,6 +22,10 @@ public class Character : MonoBehaviour
     }
 
     public CharacterType characterType;
+
+    public void addToStatus(Status status) {
+        status.add(status);
+    }
 
     // Start is called before the first frame update
     void Start()
