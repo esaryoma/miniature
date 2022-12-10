@@ -54,7 +54,9 @@ public class Resolve
       dmgMap is updated: for each target the damage is negated by different negation passive effects
     */
     private void reduceDmgByTarget(Dictionary<Character,int> dmgMap, ResolvedResult result) {
-        foreach (Character target in dmgMap.Keys) {
+        
+        var dmgMapCopy = dmgMap.ToDictionary(entry => entry.Key, entry => entry.Value);
+        foreach (Character target in dmgMapCopy.Keys) {
             int dmgLeftOver = dmgMap[target];
             if (target.characterType == Character.CharacterType.Enemy) {
                 dmgLeftOver = reduceDmgByEnemyTarget(dmgMap[target], target, result);
