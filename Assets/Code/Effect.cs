@@ -19,6 +19,7 @@ public class Effect : MonoBehaviour
     {
         Friendly,
         Enemy,
+        Self,
         Any
     }
 
