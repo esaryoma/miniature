@@ -38,8 +38,8 @@ public static class Resolve
         reduceDmgByTarget(dmgMap, result);
         
         foreach(Character target in dmgMap.Keys) {
-            inflictDmg(dmgMap[target], target, result);
             addDmgToResult(dmgMap[target], target, result);
+            inflictDmg(dmgMap[target], target, result);
         }
         return result;
     }
@@ -47,7 +47,7 @@ public static class Resolve
     private static void inflictDmg(int inflictedDmg, Character target, ResolvedResult result) {
         target.endurance -= inflictedDmg;
         if (target.endurance <= 0) {
-            result.addToDescription("Remove character/unit " + target.name + " from play.");
+            result.addToDescription("Remove character/unit " + target.charName + " from play.");
         }
     }
 
