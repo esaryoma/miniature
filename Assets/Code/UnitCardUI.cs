@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 public class UnitCardUI : MonoBehaviour, IPointerClickHandler
 {
 
+    public Character character;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +24,21 @@ public class UnitCardUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData) // 3
     {
-        List<Skill> skills = Control.control.skillCardUIcloseUp.ReturnSelectedSkills();
-        Debug.Log(skills.Count);
+        if (Control.control.selectedEnemies.Contains(character as Enemy))
+        {
+            Control.control.selectedEnemies.Remove(character as Enemy);
+        }
+        else
+        {
+            Control.control.selectedEnemies.Add(character as Enemy);
+        }
+
+        switch (Control.control.uiMode)
+        {
+            case Control.UImode.PlayerSkillCardCloseUp:
+                Control.control.CheckIfReadyToConfirmSkills();
+                break;
+        } 
     }
 
 

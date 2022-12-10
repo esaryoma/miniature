@@ -43,6 +43,7 @@ public class SkillUI : MonoBehaviour, IPointerClickHandler
             Control.control.UpdateCurrentCharView();
             skillCardUI.CheckSkillAvailabilityInCloseUp();
             gameObject.GetComponent<SkillUI>().propabilityImage.enabled = false;
+            Control.control.CheckIfReadyToConfirmSkills();
             return;
         }
 
@@ -54,6 +55,7 @@ public class SkillUI : MonoBehaviour, IPointerClickHandler
             Control.control.players[Control.control.currentCharacterIndex].resolve = Control.control.players[Control.control.currentCharacterIndex].resolve + resolvePrice;
             Control.control.UpdateCurrentCharView();
             skillCardUI.CheckSkillAvailabilityInCloseUp();
+            Control.control.CheckIfReadyToConfirmSkills();
             return;
         }
 
@@ -65,8 +67,10 @@ public class SkillUI : MonoBehaviour, IPointerClickHandler
             Control.control.players[Control.control.currentCharacterIndex].resolve = Control.control.players[Control.control.currentCharacterIndex].resolve + resolvePrice;
             Control.control.UpdateCurrentCharView();
             skillCardUI.CheckSkillAvailabilityInCloseUp();
+            Control.control.CheckIfReadyToConfirmSkills();
             return;
         }
+      
     }
 
     public void SetState(SkillState skillStateToSet)

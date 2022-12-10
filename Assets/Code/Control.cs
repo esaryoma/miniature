@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Control : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class Control : MonoBehaviour
 
     public List<Player> players;
     public List<Enemy> enemies;
+    public List<Enemy> selectedEnemies;
 
     [SerializeField] GameObject skillCardUIPrefab;
     [SerializeField] GameObject skillUIPrefab;
@@ -42,6 +44,9 @@ public class Control : MonoBehaviour
     public TextMeshProUGUI currentPlayerEnduranceUItext;
     public TextMeshProUGUI currentPlayerResolveUItext;
     public TextMeshProUGUI currentPlayerWoundsUItext;
+
+    public Button confirmCharacterSelectionButton;
+    public SkillUseSummaryUI skillUseSummaryUI;
 
     // Start is called before the first frame update
     void Awake()
@@ -79,6 +84,7 @@ public class Control : MonoBehaviour
             skillCardUIcloseUp.CloseCloseUp();
             bgDimmer.SetActive(false);
             skillCardInCloseUp = null;
+            confirmCharacterSelectionButton.gameObject.SetActive(false);
         }
     }
     public void InitializeCardCloseUp(SkillCardUI skillCardUI, int siblingIndex)
@@ -94,7 +100,8 @@ public class Control : MonoBehaviour
     {
     foreach (Enemy e in enemies)
         {
-            GameObject g = GameObject.Instantiate(unitCardUIPrefab, unitCardUIparent);           
+            GameObject g = GameObject.Instantiate(unitCardUIPrefab, unitCardUIparent);
+            g.GetComponent<UnitCardUI>().character = e;
         }
     }
 
@@ -188,7 +195,7 @@ public class Control : MonoBehaviour
     {
         string parsed = "";
 
-        if (s.damage != 0) { parsed = parsed + "Damage " + s.damage.ToString() + ", "; }
+       /* if (s.damage != 0) { parsed = parsed + "Damage " + s.damage.ToString() + ", "; }
         if (s.wound != 0) { parsed = parsed + "Wound " + s.wound.ToString() + ", "; }
         if (s.areaOfEffect != 0) { parsed = parsed + "Area " + s.areaOfEffect.ToString() + ", "; }
         if (s.playerMove != 0) { parsed = parsed + "Move " + s.playerMove.ToString() + ", "; }
@@ -198,9 +205,27 @@ public class Control : MonoBehaviour
         if (s.pierceArmor != 0) { parsed = parsed + "Pierce " + s.pierceArmor + ", "; }
         if (s.freeText != "") { parsed = parsed + s.freeText + ", "; }
 
-        parsed = parsed.Substring(0, parsed.Length - 2);
+        parsed = parsed.Substring(0, parsed.Length - 2);*/
 
         return parsed;
+    }
+
+    public void ConfirmSkillUseButtonPressed()
+    {
+
+    }
+
+    public void CheckIfReadyToConfirmSkills()
+    {
+        List<Skill> skills = Control.control.skillCardUIcloseUp.ReturnSelectedSkills();
+        if (skills.Count > 0 && selectedEnemies.Count > 0)
+        {
+            Control.control.confirmCharacterSelectionButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            Control.control.confirmCharacterSelectionButton.gameObject.SetActive(false);
+        }
     }
 
 }

@@ -45,18 +45,7 @@ public class TurnTrackUI : MonoBehaviour
         for (int i = 0;i<turnOrder.Count;i++)
         {
             GameObject g = GameObject.Instantiate(turnUIprefab, turnTrackUI.GetComponent<RectTransform>());
-
-            switch ((turnOrder[i]).characterType)
-                {
-
-                case Character.CharacterType.Player:
-                    g.GetComponent<Image>().color = Color.blue;
-                    break;
-
-                case Character.CharacterType.Enemy:
-                    g.GetComponent<Image>().color = Color.red;
-                    break;
-            }
+            g.GetComponent<TurnUI>().Initialize(turnOrder[i]);
         }
     }
 
