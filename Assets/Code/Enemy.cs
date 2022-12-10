@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+
+    public enum State
+    {
+        Hunter,
+        Patrol,
+        Guard
+    }
+
     // how to switch between reaction/behaviorstrategies when enemy switces States (hunter, patrol, guard)?
     // reactions/behaviors might be ScribtableObjects which are one way to simply store data?
     [SerializeField] public ReactionStrategyImpl hunterReactionStrategy;
@@ -12,18 +20,16 @@ public class Enemy : Character
     [SerializeField] public NpcBehaviorStrategyImpl hunterNpcBehaviorStrategy;
     [SerializeField] public NpcBehaviorStrategyImpl guardNpcBehaviorStrategy;
     [SerializeField] public NpcBehaviorStrategyImpl patrolNpcBehaviorStrategy;
-
-    //public NpcBehaviorStrategy behaviorStrategy;
-    [SerializeField] public int shieldPoints;
     
-    public enum State
-    {
-        Hunter,
-        Patrol,
-        Guard
-    }
+    [SerializeField] public int shieldPoints;
+    [SerializeField] public int numberOfFigures;
+    [SerializeField] public State state;
 
-    public State state;
+    // defined once, not changed:
+    [SerializeField] public int figureEndurance;
+    // Passive enemy properties which are good to add to a separate visible list for players to take account when eg. moving
+    // data type not defined, we'll see how this goes
+    [SerializeField] public string noticeableSkills;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +44,6 @@ public class Enemy : Character
     }
 
     public Reaction getRandomReaction() {
-        
         switch (state) {
             case State.Hunter: return hunterReactionStrategy.getRandomReaction();
             case State.Patrol: return patrolReactionStrategy.getRandomReaction();
@@ -46,5 +51,10 @@ public class Enemy : Character
             default: return null;
         }
     }
+
+    public int takeEffect() {
+        
+    }
+
 
 }
