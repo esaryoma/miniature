@@ -9,6 +9,14 @@ public class Character : MonoBehaviour
     [SerializeField] public int wounds;
     [SerializeField] public int resolve;
 
+    public enum CharacterType 
+    {
+        Player,
+        Enemy
+    }
+
+    public CharacterType characterType;
+
     // Start is called before the first frame update
     void Start()
     {
