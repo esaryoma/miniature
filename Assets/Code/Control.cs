@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.TextCore.Text;
 
 public class Control : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Control : MonoBehaviour
     public List<Sprite> propabilitySprites;
     public List<Sprite> skillPriceSprites;
 
-    public int currentCharacterIndex = 0;
+    public int currentPlayerCharacterIndex = 0;
 
     public enum UImode
     {
@@ -30,7 +31,7 @@ public class Control : MonoBehaviour
     public List<Enemy> enemies;
     public List<Enemy> selectedEnemies;
 
-    [SerializeField] GameObject skillCardUIPrefab;
+    public GameObject skillCardUIPrefab;
     [SerializeField] GameObject skillUIPrefab;
     [SerializeField] GameObject unitCardUIPrefab;
     public RectTransform skillCardUIparent;
@@ -45,8 +46,11 @@ public class Control : MonoBehaviour
     public TextMeshProUGUI currentPlayerResolveUItext;
     public TextMeshProUGUI currentPlayerWoundsUItext;
 
+    public TextMeshProUGUI roundCounterUI;
+
     public Button confirmCharacterSelectionButton;
     public SkillUseSummaryUI skillUseSummaryUI;
+    public SkillUseReactionUI skillUseReactionUI;
 
     // Start is called before the first frame update
     void Awake()
@@ -57,9 +61,8 @@ public class Control : MonoBehaviour
     private void Start()
     {
 
-        InitializePlayerTurn(players[0]);
         InitializeEnemies();
-        TurnTrackUI.turnTrackUI.InitializeRound();
+        TurnTrackUI.turnTrackUI.EndTurn();
     }
 
     // Update is called once per frame
@@ -70,10 +73,10 @@ public class Control : MonoBehaviour
      
     public void UpdateCurrentCharView()
     {
-        currentPlayerNameUItext.text = players[currentCharacterIndex].charName;
-        currentPlayerEnduranceUItext.text = players[currentCharacterIndex].endurance.ToString();
-        currentPlayerResolveUItext.text = players[currentCharacterIndex].resolve.ToString();
-        currentPlayerWoundsUItext.text = players[currentCharacterIndex].wounds.ToString();
+        currentPlayerNameUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].charName.ToString();
+        currentPlayerEnduranceUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].endurance.ToString();
+        currentPlayerResolveUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].resolve.ToString();
+        currentPlayerWoundsUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].wounds.ToString();
     }
 
     public void CloseCardCloseUp()
@@ -85,6 +88,18 @@ public class Control : MonoBehaviour
             bgDimmer.SetActive(false);
             skillCardInCloseUp = null;
             confirmCharacterSelectionButton.gameObject.SetActive(false);
+
+            for (int i = 0; i < unitCardUIparent.childCount; i++)
+            {
+                Transform t = unitCardUIparent.GetChild(i);
+                t.GetComponent<UnitCardUI>().cardBG.color = Color.gray;
+            }
+
+            selectedEnemies.Clear();
+
+            skillUseSummaryUI.gameObject.SetActive(false);
+            skillUseReactionUI.gameObject.SetActive(false);
+
         }
     }
     public void InitializeCardCloseUp(SkillCardUI skillCardUI, int siblingIndex)
@@ -102,6 +117,7 @@ public class Control : MonoBehaviour
         {
             GameObject g = GameObject.Instantiate(unitCardUIPrefab, unitCardUIparent);
             g.GetComponent<UnitCardUI>().character = e;
+            g.GetComponent<Image>().color = e.colorInUI;
         }
     }
 
@@ -140,19 +156,9 @@ public class Control : MonoBehaviour
         }
     }
 
-    void InitializePlayerTurn(Player player)
-    {
-        float proportion = skillCardUIPrefab.GetComponent<RectTransform>().rect.width / skillCardUIPrefab.GetComponent<RectTransform>().rect.height;
+    
 
-        UpdateCurrentCharView();
-
-        for (int i = 0; i < player.skillCards.Count; i++)
-        {
-            InitializeSkillCardUI(player, player.skillCards[i]);
-        }
-        }
-
-    void InitializeSkillCardUI(Player player,SkillCard skillCard, bool closeUp = false)
+    public void InitializeSkillCardUI(Player player,SkillCard skillCard, bool closeUp = false)
     {
         GameObject g;
         RectTransform t;
@@ -209,14 +215,18 @@ public class Control : MonoBehaviour
 
         }
 
-        parsed = parsed.Substring(0, parsed.Length - 2);
+        if (parsed.Length > 2)
+        {
+            parsed = parsed.Substring(0, parsed.Length - 2);
+        }
 
         return parsed;
     }
 
     public void ConfirmSkillUseButtonPressed()
     {
-
+    skillUseSummaryUI.gameObject.SetActive(true);
+    skillUseReactionUI.gameObject.SetActive(true);
     }
 
     public void CheckIfReadyToConfirmSkills()

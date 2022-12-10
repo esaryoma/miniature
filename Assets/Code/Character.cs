@@ -23,8 +23,19 @@ public class Character : MonoBehaviour
 
     public CharacterType characterType;
 
+    public Sprite characterSprite;
+
+    public enum CharacterRace
+    {
+        Human,
+        Orc
+    }
+
+    public CharacterRace characterRace;
+
+
     public void addToStatus(Status status) {
-        status.add(status);
+        statuses.Add(status);
     }
 
     // Start is called before the first frame update
