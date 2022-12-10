@@ -52,8 +52,8 @@ public class Enemy : Character
         }
     }
 
-    public int takeEffect() {
-        return 1;
+    public void takeEffect() {
+
     }
 
 
