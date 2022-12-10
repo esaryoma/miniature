@@ -52,7 +52,7 @@ public class Enemy : Character
         }
     }
 
-    public int takeEffect() {
+    public void takeEffect() {
 
     }
 

@@ -178,19 +178,22 @@ public class Control : MonoBehaviour
     }
 
 
-    string ParseSkillText(Skill s)
+    string ParseSkillText(Skill skill)
     {
         string parsed = "";
 
-        if (s.damage != 0) { parsed = parsed + "Damage " + s.damage.ToString() + ", "; }
-        if (s.wound != 0) { parsed = parsed + "Wound " + s.wound.ToString() + ", "; }
-        if (s.areaOfEffect != 0) { parsed = parsed + "Area " + s.areaOfEffect.ToString() + ", "; }
-        if (s.playerMove != 0) { parsed = parsed + "Move " + s.playerMove.ToString() + ", "; }
-        if (s.targetMove != 0) { parsed = parsed + "Push/Pull " + s.targetMove.ToString() + ", "; }
-        if (s.range != 0) { parsed = parsed + "Range " + s.range.ToString() + ", "; }
-        if (s.status != null) { parsed = parsed + s.status.statusType + " " + s.status.length + ", "; }
-        if (s.pierceArmor != 0) { parsed = parsed + "Pierce " + s.pierceArmor + ", "; }
-        if (s.freeText != "") { parsed = parsed + s.freeText + ", "; }
+        foreach(Effect effect in skill.effects) {
+            if (effect.damage != 0) { parsed = parsed + "Damage " + effect.damage.ToString() + ", "; }
+            if (effect.wound != 0) { parsed = parsed + "Wound " + effect.wound.ToString() + ", "; }
+            if (effect.areaOfEffect != 0) { parsed = parsed + "Area " + effect.areaOfEffect.ToString() + ", "; }
+            if (effect.playerMove != 0) { parsed = parsed + "Move " + effect.playerMove.ToString() + ", "; }
+            if (effect.targetMove != 0) { parsed = parsed + "Push/Pull " + effect.targetMove.ToString() + ", "; }
+            if (effect.range != 0) { parsed = parsed + "Range " + effect.range.ToString() + ", "; }
+            if (effect.status != null) { parsed = parsed + effect.status.statusType + " " + effect.status.length + ", "; }
+            if (effect.pierceArmor != 0) { parsed = parsed + "Pierce " + effect.pierceArmor + ", "; }
+            if (effect.freeText != "") { parsed = parsed + effect.freeText + ", "; }
+
+        }
 
         parsed = parsed.Substring(0, parsed.Length - 2);
 
