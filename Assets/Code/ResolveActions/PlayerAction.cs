@@ -8,6 +8,12 @@ public class PlayerAction
     public Skill skill;
     public List<Character> targets;
 
+    public PlayerAction(Skill targetSkill, List<Character> targetList)
+    {
+        targets = targetList;
+        skill = targetSkill;
+    }
+
     public List<Effect> getSkillEffects() {
         return skill.effects;
     }

@@ -227,11 +227,31 @@ public class Control : MonoBehaviour
     {
     skillUseSummaryUI.gameObject.SetActive(true);
     skillUseReactionUI.gameObject.SetActive(true);
+
+        List<PlayerAction> playerActions = new List<PlayerAction>();
+
+        List<Skill> skills = skillCardUIcloseUp.ReturnSelectedSkills();
+
+        List<Character> targets = new List<Character>();
+        foreach (Enemy e in selectedEnemies)
+        {
+            targets.Add(e as Character);
+        } 
+
+        foreach (Skill skill in skills)
+        {
+            playerActions.Add(new PlayerAction(skill, targets));
+
+        }
+
+        ResolvedResult resolvedResult = Resolve.resolve(playerActions);
+
+        skillUseSummaryUI.summaryText.text = resolvedResult.description;
     }
 
     public void CheckIfReadyToConfirmSkills()
     {
-        List<Skill> skills = Control.control.skillCardUIcloseUp.ReturnSelectedSkills();
+        List<Skill> skills = skillCardUIcloseUp.ReturnSelectedSkills();
         if (skills.Count > 0 && selectedEnemies.Count > 0)
         {
             Control.control.confirmCharacterSelectionButton.gameObject.SetActive(true);

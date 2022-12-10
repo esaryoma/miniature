@@ -29,9 +29,11 @@ public class SkillCardUI : MonoBehaviour, IPointerClickHandler
 
     public List<Skill> ReturnSelectedSkills()
     {
-        List<Skill> skillsSelected = new List<Skill>();
+        List<Skill> skillsSelected = new List<Skill>();     
 
-        for(int i=0;i<skillUIs.Count;i++)
+        skillsSelected.Add(skillCard.skills[0]); //ALWAYS ADD BASIC SKILL (INDEX 0)
+
+        for (int i=1;i<skillUIs.Count;i++)
         {
             if (skillUIs[i].gameObject.activeSelf && skillUIs[i].skillState == SkillUI.SkillState.Selected)
             {

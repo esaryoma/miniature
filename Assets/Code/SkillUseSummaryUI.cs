@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SkillUseSummaryUI : MonoBehaviour
 {
+
+    public TextMeshProUGUI summaryText;
+
     // Start is called before the first frame update
     void Start()
     {

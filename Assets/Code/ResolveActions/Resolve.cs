@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Resolve
+public static class Resolve
 {
-    public ResolvedResult resolve(List<PlayerAction> actions) {
+    public static ResolvedResult resolve(List<PlayerAction> actions) {
 
         Dictionary<Character, int> dmgMap = new Dictionary<Character, int>();
 
@@ -43,7 +43,7 @@ public class Resolve
         return result;
     }
 
-    private void inflictDmg(int inflictedDmg, Character target, ResolvedResult result) {
+    private static void inflictDmg(int inflictedDmg, Character target, ResolvedResult result) {
         target.endurance -= inflictedDmg;
         if (target.endurance <= 0) {
             result.addToDescription("Remove character/unit " + target.name + " from play.");
@@ -53,7 +53,7 @@ public class Resolve
     /**
       dmgMap is updated: for each target the damage is negated by different negation passive effects
     */
-    private void reduceDmgByTarget(Dictionary<Character,int> dmgMap, ResolvedResult result) {
+    private static void reduceDmgByTarget(Dictionary<Character,int> dmgMap, ResolvedResult result) {
         foreach (Character target in dmgMap.Keys) {
             int dmgLeftOver = dmgMap[target];
             if (target.characterType == Character.CharacterType.Enemy) {
@@ -65,12 +65,12 @@ public class Resolve
         }
     }
 
-    private int reduceDmgByPlayerTarget(int inflictedDmg, Character target, ResolvedResult result) {
+    private static int reduceDmgByPlayerTarget(int inflictedDmg, Character target, ResolvedResult result) {
         // TODO
         return 0;
     }
 
-    private int reduceDmgByEnemyTarget(int inflictedDmg, Character target, ResolvedResult result) {
+    private static int reduceDmgByEnemyTarget(int inflictedDmg, Character target, ResolvedResult result) {
         Enemy enemy = target as Enemy;
         int dmgLeftOver = inflictedDmg;
         if (enemy.shieldPoints > 0) {
@@ -93,7 +93,7 @@ public class Resolve
         return dmgLeftOver;
     }
 
-    private void addToDmg(Effect effect, List<Character> targets, Dictionary<Character, int> dmgMap) {
+    private static void addToDmg(Effect effect, List<Character> targets, Dictionary<Character, int> dmgMap) {
         foreach (Character target in targets) {
             if (dmgMap.ContainsKey(target)) {
                 dmgMap[target] += effect.damage;
@@ -103,7 +103,7 @@ public class Resolve
         }
     }
 
-    private void addToStatus(Status status, List<Character> targets, ResolvedResult result) {
+    private static void addToStatus(Status status, List<Character> targets, ResolvedResult result) {
         if (status != null) {
             foreach(Character target in targets) {
                 target.addToStatus(status);
@@ -112,11 +112,11 @@ public class Resolve
         }
     }
 
-    private void addDmgToResult(int inflictedDmg, Character target, ResolvedResult result) {
+    private static void addDmgToResult(int inflictedDmg, Character target, ResolvedResult result) {
         result.addToDescription("Inflicted " + inflictedDmg + " to " + target.charName);
     }
 
-    private void addStatusToDescription(Status status, Character target, ResolvedResult result) {
+    private static void addStatusToDescription(Status status, Character target, ResolvedResult result) {
         result.addToDescription("Added status " + status.statusType + " to " + target.charName);
     }
 
