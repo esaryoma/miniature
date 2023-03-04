@@ -9,7 +9,7 @@ public class PlayerCharacterInitializerEditor : Editor
     {
         PlayerCharacterInitializer myTarget = (PlayerCharacterInitializer)target;
        
-        if (GUILayout.Button("InitializeCharacters"))
+        if (GUILayout.Button("InitializePlayerCharacters"))
         {
             Clear();
             Character[] characters = myTarget.transform.GetComponentsInChildren<Character>();
