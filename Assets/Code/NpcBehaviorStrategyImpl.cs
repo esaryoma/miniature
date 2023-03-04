@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class NpcBehaviorStrategyImpl : MonoBehaviour, NpcBehaviorStrategy
 {
-    public List<NpcBehavior> npcBehaviors;
+    [SerializeField] public List<NpcBehavior> npcBehaviors;
+    [SerializeField] public string behaviorName;
 
     public NpcBehavior getRandomNpcBehavior() {
         // randomly get this strategy's speficic behavior
