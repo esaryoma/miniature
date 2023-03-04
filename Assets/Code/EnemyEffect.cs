@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Reaction : MonoBehaviour
+public class EnemyEffect : Effect
 {
-    [SerializeField] public string reactionName;
-
-    [SerializeField] public List<EnemyEffect> effects;
+    [SerializeField] public int resource;
 
     // Start is called before the first frame update
     void Start()
