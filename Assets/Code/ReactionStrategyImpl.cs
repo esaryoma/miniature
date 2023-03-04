@@ -11,12 +11,16 @@ public class ReactionStrategyImpl : MonoBehaviour, ReactionStrategy
     /**
     * Return a random reaction listed in this ReactionStrategy
     * Returns a null if no reactions found
+    * Adds preferredTarget to the randomly selected Reaction, 
+    * so it can be used in UI.
     */
-    public Reaction getRandomReaction() {
+    public Reaction getRandomReaction(string preferredTarget) {
         // randomly get this strategy's speficic reaction
         if (reactions != null && reactions.Count > 0) {
             int reactionIndex  = Random.Range(0, reactions.Count-1);
-            return reactions[reactionIndex];
+            Reaction reaction = reactions[reactionIndex];
+            reaction.preferredTarget = preferredTarget;
+            return reaction;
         } 
         return null;
     }

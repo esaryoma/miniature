@@ -236,6 +236,32 @@ public class Control : MonoBehaviour
         return parsed;
     }
 
+    string ParseEnemyReactionText(Skill skill)
+    {
+        string parsed = "";
+
+        foreach (EnemyEffect effect in skill.effects)
+        {
+            if (effect.damage != 0) { parsed = parsed + "Damage " + effect.damage.ToString() + ", "; }
+            if (effect.wound != 0) { parsed = parsed + "Wound " + effect.wound.ToString() + ", "; }
+            if (effect.areaOfEffect != 0) { parsed = parsed + "Area " + effect.areaOfEffect.ToString() + ", "; }
+            if (effect.playerMove != 0) { parsed = parsed + "Move " + effect.playerMove.ToString() + ", "; }
+            if (effect.targetMove != 0) { parsed = parsed + "Push/Pull " + effect.targetMove.ToString() + ", "; }
+            if (effect.range != 0) { parsed = parsed + "Range " + effect.range.ToString() + ", "; }
+            if (effect.status != null) { parsed = parsed + effect.status.statusType + " " + effect.status.length + ", "; }
+            if (effect.pierceArmor != 0) { parsed = parsed + "Pierce " + effect.pierceArmor + ", "; }
+            if (effect.freeText != "") { parsed = parsed + effect.freeText + ", "; }
+            if (effect.resource != 0) { parsed = parsed + "Resources " + effect.resource + ", "; }
+        }
+
+        if (parsed.Length > 2)
+        {
+            parsed = parsed.Substring(0, parsed.Length - 2);
+        }
+
+        return parsed;
+    }
+
     public void ConfirmSkillUseButtonPressed()
     {
     

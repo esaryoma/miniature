@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-
     public enum State
     {
         Hunter,
@@ -33,6 +32,9 @@ public class Enemy : Character
     [SerializeField] public int shieldPoints;
     [SerializeField] public int numberOfFigures;
     [SerializeField] public State state;
+    [SerializeField] public List<string> hunterTargets;
+    [SerializeField] public List<string> patrolTargets;
+    [SerializeField] public List<string> guardTargets;
 
     // defined once, not changed:
     [SerializeField] public int figureEndurance;
@@ -56,9 +58,9 @@ public class Enemy : Character
 
     public Reaction getRandomReaction() {
         switch (state) {
-            case State.Hunter: return hunterReactionStrategy.getRandomReaction();
-            case State.Patrol: return patrolReactionStrategy.getRandomReaction();
-            case State.Guard: return guardReactionStrategy.getRandomReaction();
+            case State.Hunter: return hunterReactionStrategy.getRandomReaction(getRandomElementFromList(hunterTargets));
+            case State.Patrol: return patrolReactionStrategy.getRandomReaction(getRandomElementFromList(patrolTargets));
+            case State.Guard: return guardReactionStrategy.getRandomReaction(getRandomElementFromList(guardTargets));
             default: return null;
         }
     }
@@ -67,5 +69,28 @@ public class Enemy : Character
 
     }
 
+    /*
+    public string getRandomTargetBasedOnState()
+    {
+        switch(state) {
+            case State.Hunter: return getRandomElementFromList(hunterTargets);
+            case State.Patrol: return getRandomElementFromList(patrolTargets);
+            case State.Guard: return getRandomElementFromList(guardTargets);
+            default: return null;
+        }
+    }
+    */
+
+    private string getRandomElementFromList(List<string> list)
+    {
+
+        if (list != null && list.Count > 0)
+        {
+            return list[Random.Range(0, list.Count - 1)];
+        } else
+        {
+            return null;
+        }
+    }
 
 }

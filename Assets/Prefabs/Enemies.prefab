@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &989264380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 989264381}
+  - component: {fileID: 989264382}
+  m_Layer: 0
+  m_Name: attackReactionEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &989264381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989264380}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3885045426286453696}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &989264382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989264380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50800d35e895adc4393ad2b4caa1b180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectName: attackRactionEffect
+  damage: 0
+  areaOfEffect: 0
+  playerMove: 0
+  targetMove: 0
+  wound: 0
+  range: 0
+  status: {fileID: 0}
+  pierceArmor: 0
+  freeText: 
+  targetType: 0
+  effectType: 0
+  resource: 0
 --- !u!1 &1520486482615473704
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,12 +2256,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4669156541602703152, guid: 52481caec803b8c478cf9efea792d958, type: 3}
+      propertyPath: effects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669156541602703152, guid: 52481caec803b8c478cf9efea792d958, type: 3}
+      propertyPath: effects.Array.data[0]
+      value: 
+      objectReference: {fileID: 989264382}
     - target: {fileID: 6546614573095613081, guid: 52481caec803b8c478cf9efea792d958, type: 3}
       propertyPath: m_Name
       value: attack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52481caec803b8c478cf9efea792d958, type: 3}
+--- !u!4 &3885045426286453696 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4622274934243747247, guid: 52481caec803b8c478cf9efea792d958, type: 3}
+  m_PrefabInstance: {fileID: 8489261843578422895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8783408694162825414
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Reaction : MonoBehaviour
 {
     [SerializeField] public string reactionName;
+    public string preferredTarget;
 
     [SerializeField] public List<EnemyEffect> effects;
 

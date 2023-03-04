@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ReactionStrategy
 {
-    Reaction getRandomReaction();
+    Reaction getRandomReaction(string preferredTarget);
 }

@@ -1534,7 +1534,7 @@ MonoBehaviour:
   resolve: 4
   statuses: []
   characterType: 0
-  characterSprite: {fileID: 0}
+  characterSprite: {fileID: 21300000, guid: f8c9467a892580344bb697526dac0d13, type: 3}
   characterRace: 0
   playerClass: fighter
   skillCards:
@@ -2004,7 +2004,7 @@ GameObject:
   - component: {fileID: 370466350498904860}
   - component: {fileID: 744725192950830453}
   m_Layer: 0
-  m_Name: Effect
+  m_Name: swordPushEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2107,7 +2107,7 @@ GameObject:
   - component: {fileID: 7254290886843683705}
   - component: {fileID: 1040338191192148145}
   m_Layer: 0
-  m_Name: Effect
+  m_Name: swordCleaveEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2198,7 +2198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: Push
-  effects: []
+  effects:
+  - {fileID: 744725192950830453}
 --- !u!1 &1220409221959448584
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,7 +2423,7 @@ GameObject:
   - component: {fileID: 5708519003721118362}
   - component: {fileID: 2723711794809010160}
   m_Layer: 0
-  m_Name: Effect
+  m_Name: swordBasicEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2478,7 +2479,7 @@ GameObject:
   - component: {fileID: 2696328877591580427}
   - component: {fileID: 2706463861425241205}
   m_Layer: 0
-  m_Name: Effect
+  m_Name: bowBasicEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2623,7 +2624,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: Pierce
-  effects: []
+  effects:
+  - {fileID: 5059570934445612995}
 --- !u!1 &3703323170584303455
 GameObject:
   m_ObjectHideFlags: 0
@@ -2635,7 +2637,7 @@ GameObject:
   - component: {fileID: 6543708663496143277}
   - component: {fileID: 1504875152351793750}
   m_Layer: 0
-  m_Name: Effect
+  m_Name: bowRicochetEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2772,7 +2774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: ricochet
-  effects: []
+  effects:
+  - {fileID: 1504875152351793750}
 --- !u!1 &4485537540272593474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2782,6 +2785,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8752516036595842869}
+  - component: {fileID: 2124468676}
   m_Layer: 0
   m_Name: Players
   m_TagString: Untagged
@@ -2807,6 +2811,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2124468676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4485537540272593474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f42d2eda6a226b40bd711c430bbf63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4548030203255472879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2860,13 +2876,60 @@ MonoBehaviour:
   resolve: 4
   statuses: []
   characterType: 0
-  characterSprite: {fileID: 0}
+  characterSprite: {fileID: 21300000, guid: fd098fb4cf57bad419701c802e442b7e, type: 3}
   characterRace: 0
   playerClass: fighter
   skillCards:
   - {fileID: 5023873492216781996}
   - {fileID: 1267455529551308729}
   - {fileID: 863731273}
+--- !u!1 &4629378014763912809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 811722436044275895}
+  - component: {fileID: 8573809769174262015}
+  m_Layer: 0
+  m_Name: bleed2Status
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &811722436044275895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629378014763912809}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 576695704626861707}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8573809769174262015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629378014763912809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77a45d0b264cf54ebbd66dde1ee2ca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusType: bleed
+  length: 2
+  resolvedWhen: startOfTurn
 --- !u!1 &4697724591949184218
 GameObject:
   m_ObjectHideFlags: 0
@@ -2913,7 +2976,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: Cleave
-  effects: []
+  effects:
+  - {fileID: 1040338191192148145}
 --- !u!1 &4886042854478991915
 GameObject:
   m_ObjectHideFlags: 0
@@ -2924,9 +2988,8 @@ GameObject:
   m_Component:
   - component: {fileID: 576695704626861707}
   - component: {fileID: 3391049593022606691}
-  - component: {fileID: 4683214496207734626}
   m_Layer: 0
-  m_Name: Effect
+  m_Name: bowBleedEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2943,7 +3006,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 811722436044275895}
   m_Father: {fileID: 1408668433523472644}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2965,27 +3029,12 @@ MonoBehaviour:
   playerMove: 0
   targetMove: 0
   wound: 0
-  range: 9
-  status: {fileID: 0}
-  pierceArmor: -1
+  range: 0
+  status: {fileID: 8573809769174262015}
+  pierceArmor: 0
   freeText: 
   targetType: 3
   effectType: 3
---- !u!114 &4683214496207734626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4886042854478991915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b77a45d0b264cf54ebbd66dde1ee2ca4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statusType: bleed
-  length: 2
-  resolvedWhen: startOfTurn
 --- !u!1 &5092199662381063360
 GameObject:
   m_ObjectHideFlags: 0
@@ -3137,7 +3186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: bleed
-  effects: []
+  effects:
+  - {fileID: 3391049593022606691}
 --- !u!1 &5531130408718614360
 GameObject:
   m_ObjectHideFlags: 0
@@ -3184,7 +3234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: Basic
-  effects: []
+  effects:
+  - {fileID: 2706463861425241205}
 --- !u!1 &6116936233206400822
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,7 +3342,7 @@ GameObject:
   - component: {fileID: 1709636823244707791}
   - component: {fileID: 9053966945579709536}
   m_Layer: 0
-  m_Name: Effect
+  m_Name: swordSlashEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3609,7 +3660,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: slash
-  effects: []
+  effects:
+  - {fileID: 1709636823244707791}
 --- !u!1 &8300904010311012576
 GameObject:
   m_ObjectHideFlags: 0
@@ -3621,7 +3673,7 @@ GameObject:
   - component: {fileID: 4821536546941499334}
   - component: {fileID: 5059570934445612995}
   m_Layer: 0
-  m_Name: Effect
+  m_Name: bowPierceEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
