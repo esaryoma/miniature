@@ -19,6 +19,8 @@ public class Control : MonoBehaviour
 
     public int currentPlayerCharacterIndex = 0;
 
+    public Transform canvas;
+
     public enum UImode
     {
         PlayerTurn,
@@ -40,6 +42,7 @@ public class Control : MonoBehaviour
     public SkillCardUI skillCardUIcloseUp;
     public SkillCard skillCardInCloseUp;
     public GameObject bgDimmer;
+    public SkillCardUI selectedCardUI;
 
     public TextMeshProUGUI currentPlayerNameUItext;
     public TextMeshProUGUI currentPlayerEnduranceUItext;
@@ -49,8 +52,13 @@ public class Control : MonoBehaviour
     public TextMeshProUGUI roundCounterUI;
 
     public Button confirmCharacterSelectionButton;
+    public TextMeshProUGUI skillConfirmButtonText;
     public SkillUseSummaryUI skillUseSummaryUI;
     public SkillUseReactionUI skillUseReactionUI;
+    int skillConfirmButtonState = 0;
+    int resolveToBeAdded = 0;
+
+    public TextMeshProUGUI resolvePromptText;
 
     // Start is called before the first frame update
     void Awake()
@@ -79,12 +87,12 @@ public class Control : MonoBehaviour
         currentPlayerWoundsUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].wounds.ToString();
     }
 
-    public void CloseCardCloseUp()
+    public void CloseCardCloseUp(bool skillsResolved = false)
     {
         if (Control.control.uiMode == Control.UImode.PlayerSkillCardCloseUp)
         {
             Control.control.uiMode = Control.UImode.PlayerTurn;
-            skillCardUIcloseUp.CloseCloseUp();
+            skillCardUIcloseUp.CloseCloseUp(skillsResolved);
             bgDimmer.SetActive(false);
             skillCardInCloseUp = null;
             confirmCharacterSelectionButton.gameObject.SetActive(false);
@@ -99,16 +107,20 @@ public class Control : MonoBehaviour
 
             skillUseSummaryUI.gameObject.SetActive(false);
             skillUseReactionUI.gameObject.SetActive(false);
+            resolvePromptText.gameObject.SetActive(false);
 
         }
     }
     public void InitializeCardCloseUp(SkillCardUI skillCardUI, int siblingIndex)
     {
+        selectedCardUI = skillCardUI;
         Control.control.skillCardUIcloseUp.gameObject.SetActive(true);
+        if (!TurnTrackUI.turnTrackUI.actionDoneInCurrentTurn) { Control.control.skillCardUIcloseUp.BroadcastMessage("ChangeSkillColor", SendMessageOptions.DontRequireReceiver); }
         bgDimmer.SetActive(true);
         InitializeSkillCardUI(players[0], skillCardUI.skillCard, true);
         uiMode = UImode.PlayerSkillCardCloseUp;
         InitializePropabilityImages(skillCardUI, siblingIndex);
+        resolvePromptText.text = "";
     }
 
     public void InitializeEnemies()
@@ -117,14 +129,14 @@ public class Control : MonoBehaviour
         {
             GameObject g = GameObject.Instantiate(unitCardUIPrefab, unitCardUIparent);
             g.GetComponent<UnitCardUI>().character = e;
+            g.GetComponent<UnitCardUI>().charImage.sprite = e.characterSprite;
             g.GetComponent<Image>().color = e.colorInUI;
         }
     }
 
     void InitializePropabilityImages(SkillCardUI skillCardUI, int siblingIndex)
     {
-        int i = siblingIndex;
-        Debug.Log(i);
+        int i = siblingIndex; 
         List<float> probs = new List<float>();
 
         switch (i)
@@ -186,6 +198,7 @@ public class Control : MonoBehaviour
             s.skillNameUItext.text = skillCard.skills[ii].name;
             s.skillUItext.text = ParseSkillText(skillCard.skills[ii]);
             s.skill = skillCard.skills[ii];
+            s.resolvePrice = ii;
 
             if (!closeUp)
             {
@@ -225,29 +238,60 @@ public class Control : MonoBehaviour
 
     public void ConfirmSkillUseButtonPressed()
     {
-    skillUseSummaryUI.gameObject.SetActive(true);
-    skillUseReactionUI.gameObject.SetActive(true);
+    
 
-        List<PlayerAction> playerActions = new List<PlayerAction>();
-
-        List<Skill> skills = skillCardUIcloseUp.ReturnSelectedSkills();
-
-        List<Character> targets = new List<Character>();
-        foreach (Enemy e in selectedEnemies)
+    switch (skillConfirmButtonState)
         {
-            targets.Add(e as Character);
-        } 
+            case 0:
+            TurnTrackUI.turnTrackUI.actionDoneInCurrentTurn = true;
 
-        foreach (Skill skill in skills)
-        {
-            playerActions.Add(new PlayerAction(skill, targets));
+            resolveToBeAdded = (selectedCardUI.transform.GetSiblingIndex() + 1);
+            resolvePromptText.text = selectedCardUI.SkillCardName.text + " moved to first slot, you will gain " + (selectedCardUI.transform.GetSiblingIndex() + 1).ToString() + " resolve";
+            selectedCardUI.transform.SetAsFirstSibling();
+
+            resolvePromptText.gameObject.SetActive(true);
+
+            canvas.BroadcastMessage("ChangeSkillColor");
+
+            skillConfirmButtonText.text = "End";
+            skillConfirmButtonState = 1;
+
+            skillUseSummaryUI.gameObject.SetActive(true);
+            skillUseReactionUI.gameObject.SetActive(true);
+
+            List<PlayerAction> playerActions = new List<PlayerAction>();
+
+            List<Skill> skills = skillCardUIcloseUp.ReturnSelectedSkills();
+
+            List<Character> targets = new List<Character>();
+            foreach (Enemy e in selectedEnemies)
+            {
+                targets.Add(e as Character);
+            } 
+
+            foreach (Skill skill in skills)
+            {
+                playerActions.Add(new PlayerAction(skill, targets));
+            }
+
+            ResolvedResult resolvedResult = Resolve.resolve(playerActions);
+
+            skillUseSummaryUI.summaryText.text = resolvedResult.description;
+            break;
+
+            case 1: 
+                skillConfirmButtonText.text = "Confirm";
+                CloseCardCloseUp(true);
+                skillConfirmButtonState = 0;
+                Debug.Log("resolve 1 " + Control.control.players[Control.control.currentPlayerCharacterIndex].resolve);
+                Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve + resolveToBeAdded;
+                Debug.Log("resolve 2 " + Control.control.players[Control.control.currentPlayerCharacterIndex].resolve);
+                break;
 
         }
-
-        ResolvedResult resolvedResult = Resolve.resolve(playerActions);
-
-        skillUseSummaryUI.summaryText.text = resolvedResult.description;
+        UpdateCurrentCharView();
     }
+
 
     public void CheckIfReadyToConfirmSkills()
     {

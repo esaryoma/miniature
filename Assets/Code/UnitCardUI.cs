@@ -10,6 +10,7 @@ public class UnitCardUI : MonoBehaviour, IPointerClickHandler
 
     public Character character;
     public Image cardBG;
+    public Image charImage;
 
     // Start is called before the first frame update
     void Start()

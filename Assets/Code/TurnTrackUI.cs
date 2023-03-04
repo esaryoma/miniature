@@ -13,6 +13,7 @@ public class TurnTrackUI : MonoBehaviour
 
     public int roundCounter = 1;
     public int currentTurnIndex = 0;
+    public bool actionDoneInCurrentTurn = false;
 
     void Awake()
     {
@@ -91,12 +92,9 @@ public class TurnTrackUI : MonoBehaviour
 
         switch (c.characterType)
         {
-            case Character.CharacterType.Player:
-                Player p = c as Player;
-                for (int i = 0; i < p.skillCards.Count; i++)
-                {
-                    Control.control.InitializeSkillCardUI(p, p.skillCards[i]);
-                }
+            case Character.CharacterType.Player: 
+                SelectPlayerCharacterPanel.selectPlayerCharacterPanel.gameObject.SetActive(true);
+                SelectPlayerCharacterPanel.selectPlayerCharacterPanel.InitializeButtons();
                 break;
 
             case Character.CharacterType.Enemy:
@@ -104,9 +102,18 @@ public class TurnTrackUI : MonoBehaviour
                 transform.GetChild(currentTurnIndex).GetComponent<Image>().sprite = turnOrder[currentTurnIndex].characterSprite;
                 break;
         }
-
+        actionDoneInCurrentTurn = false;
+        Control.control.BroadcastMessage("ChangeSkillColor",SendMessageOptions.DontRequireReceiver);
 
         Control.control.UpdateCurrentCharView();
+    }
+
+    public void InitializePlayerTurn(Player p)
+    {
+        for (int i = 0; i < p.skillCards.Count; i++)
+        {
+            Control.control.InitializeSkillCardUI(p, p.skillCards[i]);
+        }
     }
 
 }

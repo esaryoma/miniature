@@ -33,42 +33,57 @@ public class SkillUI : MonoBehaviour, IPointerClickHandler
 
     }
 
+    void ChangeSkillColor()
+    { 
+        if (TurnTrackUI.turnTrackUI.actionDoneInCurrentTurn == true)
+        {
+            GetComponent<Image>().color = new Color(0, 0, 0, 0.39f);
+        }
+        else
+        {
+            GetComponent<Image>().color = new Color(1f, 0, 0, 0.39f);
+        }
+    }
+
     public void OnPointerClick(PointerEventData eventData) // 3
     {
-        if (skillState == SkillState.NotSelected)
+        if (!TurnTrackUI.turnTrackUI.actionDoneInCurrentTurn)
         {
-            SetState(SkillState.Selected);
-            GetComponent<Image>().color = new Color(Color.magenta.r, Color.magenta.g, Color.magenta.b, 0.5f);
-            Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve - resolvePrice;
-            Control.control.UpdateCurrentCharView();
-            skillCardUI.CheckSkillAvailabilityInCloseUp();
-            gameObject.GetComponent<SkillUI>().propabilityImage.enabled = false;
-            Control.control.CheckIfReadyToConfirmSkills();
-            return;
-        }
+            if (skillState == SkillState.NotSelected)
+            {
+                SetState(SkillState.Selected);
+                GetComponent<Image>().color = new Color(Color.magenta.r, Color.magenta.g, Color.magenta.b, 0.5f);
+                Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve - resolvePrice;
+                Control.control.UpdateCurrentCharView();
+                skillCardUI.CheckSkillAvailabilityInCloseUp();
+                gameObject.GetComponent<SkillUI>().propabilityImage.enabled = false;
+                Control.control.CheckIfReadyToConfirmSkills();
+                return;
+            }
 
-        if (skillState == SkillState.Selected)
-        {
-            SetState(SkillState.NotSelected);
-            gameObject.GetComponent<SkillUI>().propabilityImage.enabled = true;
-            GetComponent<Image>().color = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
-            Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve + resolvePrice;
-            Control.control.UpdateCurrentCharView();
-            skillCardUI.CheckSkillAvailabilityInCloseUp();
-            Control.control.CheckIfReadyToConfirmSkills();
-            return;
-        }
+            if (skillState == SkillState.Selected)
+            {
+                SetState(SkillState.NotSelected);
+                gameObject.GetComponent<SkillUI>().propabilityImage.enabled = true;
+                GetComponent<Image>().color = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
+                Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve + resolvePrice;
+                Control.control.UpdateCurrentCharView();
+                skillCardUI.CheckSkillAvailabilityInCloseUp();
+                Control.control.CheckIfReadyToConfirmSkills();
+                return;
+            }
 
-        if (skillState == SkillState.DisabledAndBought)
-        {
-            SetState(SkillState.NotSelected);
-            gameObject.GetComponent<SkillUI>().propabilityImage.enabled = true;
-            GetComponent<Image>().color = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
-            Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve + resolvePrice;
-            Control.control.UpdateCurrentCharView();
-            skillCardUI.CheckSkillAvailabilityInCloseUp();
-            Control.control.CheckIfReadyToConfirmSkills();
-            return;
+            if (skillState == SkillState.DisabledAndBought)
+            {
+                SetState(SkillState.NotSelected);
+                gameObject.GetComponent<SkillUI>().propabilityImage.enabled = true;
+                GetComponent<Image>().color = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
+                Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve + resolvePrice;
+                Control.control.UpdateCurrentCharView();
+                skillCardUI.CheckSkillAvailabilityInCloseUp();
+                Control.control.CheckIfReadyToConfirmSkills();
+                return;
+            }
         }
       
     }
