@@ -44,7 +44,7 @@ public class SkillCardUI : MonoBehaviour, IPointerClickHandler
         return skillsSelected;
     }
 
-    public void CloseCloseUp()
+    public void CloseCloseUp(bool skillsResolved)
     {
         for (int i = 0; i < skillUIs.Count; i++)
         {
@@ -52,8 +52,11 @@ public class SkillCardUI : MonoBehaviour, IPointerClickHandler
             {
                 skillUIs[i].SetState(SkillUI.SkillState.NotSelected);
                 skillUIs[i].gameObject.GetComponent<SkillUI>().propabilityImage.enabled = true;
-                skillUIs[i].GetComponent<Image>().color = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
-                Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve + skillUIs[i].resolvePrice;
+                if (!skillsResolved) 
+                { 
+                    Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve + skillUIs[i].resolvePrice;
+                    skillUIs[i].GetComponent<Image>().color = new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
+                }
             }
 
             if (skillUIs[i].skillState == SkillUI.SkillState.Disabled)

@@ -12,8 +12,7 @@ public class Character : MonoBehaviour
     [SerializeField] public int wounds;
     // resource for skills and abilities
     [SerializeField] public int resolve;
-    [SerializeField] public List<Status> statuses;
-
+    [SerializeField] public List<Status> statuses; 
 
     public enum CharacterType 
     {
