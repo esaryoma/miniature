@@ -23,7 +23,7 @@ public class Character : MonoBehaviour
     public CharacterType characterType;
 
     public Sprite characterSprite;
-
+    public Sprite figureSprite;
     public enum CharacterRace
     {
         Human,
