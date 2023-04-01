@@ -330,6 +330,10 @@ public class Control : MonoBehaviour
             }
 
             ResolvedResult resolvedResult = Resolve.resolve(playerActions);
+
+            foreach (Enemy e in selectedEnemies) {
+                e.unitCardUI.UpdateCard();
+            }
                  
             skillUseSummaryUI.summaryText.text = resolvedResult.description;
             break;
