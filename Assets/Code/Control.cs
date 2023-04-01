@@ -58,7 +58,7 @@ public class Control : MonoBehaviour
     public Button confirmCharacterSelectionButton;
     public TextMeshProUGUI skillConfirmButtonText;
     public SkillUseSummaryUI skillUseSummaryUI;
-    public SkillUseReactionUI skillUseReactionUI;
+    public SkillUseReactionUI skillUseReactionUI; 
     int skillConfirmButtonState = 0;
     int resolveToBeAdded = 0;
 
@@ -80,8 +80,11 @@ public class Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            skillUseReactionUI.DisplayReaction("JEEJEEJEE");
+        }
+    }   
      
     public void UpdateCurrentCharView()
     {

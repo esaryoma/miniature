@@ -1161,7 +1161,7 @@ GameObject:
   - component: {fileID: 174798835}
   - component: {fileID: 174798834}
   m_Layer: 5
-  m_Name: BaseSkillText
+  m_Name: ReactionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4124,6 +4124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daef4fafeab270c4ab9155d8209596ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reactionField: {fileID: 174798834}
 --- !u!1 &971721836
 GameObject:
   m_ObjectHideFlags: 0
