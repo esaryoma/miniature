@@ -29,7 +29,7 @@ public class Enemy : Character
     [SerializeField] public NpcBehaviorStrategyImpl guardNpcBehaviorStrategy;
     [SerializeField] public NpcBehaviorStrategyImpl patrolNpcBehaviorStrategy;
     
-    [SerializeField] public int shieldPoints;
+    [SerializeField] public int defence;
     [SerializeField] public int numberOfFigures;
     [SerializeField] public State state;
     [SerializeField] public List<string> hunterTargets;
