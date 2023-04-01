@@ -111,6 +111,11 @@ public class TurnTrackUI : MonoBehaviour
     public void InitializePlayerTurn(int n)
     {
         Control.control.currentPlayerCharacterIndex = n;
+
+        TurnTrackUI.turnTrackUI.turnOrder.RemoveAt(TurnTrackUI.turnTrackUI.currentTurnIndex);
+        TurnTrackUI.turnTrackUI.turnOrder.Insert(TurnTrackUI.turnTrackUI.currentTurnIndex,Control.control.players[n]);
+        Control.control.UpdateCurrentCharView();
+
         for (int i = 0; i < Control.control.players[n].skillCards.Count; i++)
         {
             Control.control.InitializeSkillCardUI(Control.control.players[n], Control.control.players[n].skillCards[i]);

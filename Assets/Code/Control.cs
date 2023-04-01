@@ -88,8 +88,7 @@ public class Control : MonoBehaviour
         currentPlayerNameUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].charName.ToString();
         currentPlayerEnduranceUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].endurance.ToString();
         currentPlayerResolveUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].resolve.ToString();
-        currentPlayerWoundsUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].wounds.ToString();
-        Debug.Log(TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].charName.ToString() + " " + TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].resolve.ToString());
+        currentPlayerWoundsUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].wounds.ToString(); 
     }
 
     public void CloseCardCloseUp(bool skillsResolved = false)

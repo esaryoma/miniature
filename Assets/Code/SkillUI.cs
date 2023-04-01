@@ -54,6 +54,7 @@ public class SkillUI : MonoBehaviour, IPointerClickHandler
                 SetState(SkillState.Selected);
                 GetComponent<Image>().color = new Color(Color.magenta.r, Color.magenta.g, Color.magenta.b, 0.5f); 
                 Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve - resolvePrice;
+                Debug.Log("current player " + Control.control.players[Control.control.currentPlayerCharacterIndex].charName + " " + Control.control.currentPlayerCharacterIndex);
                 Control.control.UpdateCurrentCharView();
                 skillCardUI.CheckSkillAvailabilityInCloseUp();
                 gameObject.GetComponent<SkillUI>().propabilityImage.enabled = false;
