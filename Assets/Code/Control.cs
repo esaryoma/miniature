@@ -334,6 +334,18 @@ public class Control : MonoBehaviour
             }
                  
             skillUseSummaryUI.summaryText.text = resolvedResult.description;
+            string reactiontext = "";
+            /*
+            if (resolvedResult.getReactions() != null && resolvedResult.getReactions().size) {
+                foreach (Reaction enemyReaction in resolvedResult.getReactions()) {
+                    reactiontext += enemyReaction.reactionName + ": ";
+                    // TODO construct reactiontext ...    
+                }
+            }
+            */
+            
+            // Display reaction text in the resolve screen after player action.
+            skillUseReactionUI.DisplayReaction(reactiontext);
             break;
 
             case 1: 

@@ -57,6 +57,63 @@ MonoBehaviour:
   targetType: 0
   effectType: 0
   resource: 0
+--- !u!1 &1444548708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1444548709}
+  - component: {fileID: 1444548710}
+  m_Layer: 0
+  m_Name: gainShieldsEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1444548709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444548708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4161732031726568809}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1444548710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444548708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50800d35e895adc4393ad2b4caa1b180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectName: 
+  damage: 0
+  areaOfEffect: 0
+  playerMove: 0
+  targetMove: 0
+  wound: 0
+  range: 0
+  status: {fileID: 0}
+  pierceArmor: 0
+  freeText: 
+  targetType: 0
+  effectType: 0
+  resource: 1
 --- !u!1 &1520486482615473704
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,8 +163,10 @@ MonoBehaviour:
   wounds: 1
   resolve: 2
   statuses: []
+  immunities: []
   characterType: 1
   characterSprite: {fileID: 21300000, guid: cc1236e551448be4db397b5a268d4084, type: 3}
+  figureSprite: {fileID: 0}
   characterRace: 0
   characterClass: 0
   hunterReactionStrategy: {fileID: 0}
@@ -116,12 +175,72 @@ MonoBehaviour:
   hunterNpcBehaviorStrategy: {fileID: 0}
   guardNpcBehaviorStrategy: {fileID: 0}
   patrolNpcBehaviorStrategy: {fileID: 0}
-  shieldPoints: 0
+  defence: 0
   numberOfFigures: 0
   state: 0
+  hunterTargets: []
+  patrolTargets: []
+  guardTargets: []
   figureEndurance: 0
   noticeableSkills: 
   colorInUI: {r: 0, g: 0, b: 0, a: 1}
+  unitCardUI: {fileID: 0}
+--- !u!1 &5073108293561961075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8486667754187886929}
+  - component: {fileID: 6003911887836835014}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8486667754187886929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5073108293561961075}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7076934487109271336}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6003911887836835014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5073108293561961075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d2760e8001ff047af514e7ae5626ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectName: CounterAttack
+  damage: 0
+  areaOfEffect: 0
+  playerMove: 0
+  targetMove: 0
+  wound: 0
+  range: 0
+  status: {fileID: 0}
+  pierceArmor: 0
+  freeText: 
+  targetType: 0
+  effectType: 0
 --- !u!1 &6249766321905056954
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,8 +296,10 @@ MonoBehaviour:
   wounds: 1
   resolve: 2
   statuses: []
+  immunities: []
   characterType: 1
   characterSprite: {fileID: 21300000, guid: 61e5b4d15b358e247921ee8317ab1c8a, type: 3}
+  figureSprite: {fileID: 0}
   characterRace: 0
   characterClass: 0
   hunterReactionStrategy: {fileID: 4958109063315980173}
@@ -187,12 +308,16 @@ MonoBehaviour:
   hunterNpcBehaviorStrategy: {fileID: 1788863529}
   guardNpcBehaviorStrategy: {fileID: 2044401747}
   patrolNpcBehaviorStrategy: {fileID: 1307962947}
-  shieldPoints: 0
+  defence: 0
   numberOfFigures: 0
   state: 1
+  hunterTargets: []
+  patrolTargets: []
+  guardTargets: []
   figureEndurance: 0
   noticeableSkills: 
   colorInUI: {r: 1, g: 0, b: 0, a: 1}
+  unitCardUI: {fileID: 0}
 --- !u!1 &8991332834971137465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,6 +1712,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52481caec803b8c478cf9efea792d958, type: 3}
+--- !u!4 &7076934487109271336 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4622274934243747247, guid: 52481caec803b8c478cf9efea792d958, type: 3}
+  m_PrefabInstance: {fileID: 2455531603193076359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7124661458888703415 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4669156541602703152, guid: 52481caec803b8c478cf9efea792d958, type: 3}
@@ -2326,12 +2456,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4669156541602703152, guid: 52481caec803b8c478cf9efea792d958, type: 3}
+      propertyPath: reactionName
+      value: gainShieldsEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669156541602703152, guid: 52481caec803b8c478cf9efea792d958, type: 3}
+      propertyPath: effects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6546614573095613081, guid: 52481caec803b8c478cf9efea792d958, type: 3}
       propertyPath: m_Name
       value: gainShields
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52481caec803b8c478cf9efea792d958, type: 3}
+--- !u!4 &4161732031726568809 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4622274934243747247, guid: 52481caec803b8c478cf9efea792d958, type: 3}
+  m_PrefabInstance: {fileID: 8783408694162825414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9223107338288919446
 PrefabInstance:
   m_ObjectHideFlags: 0
