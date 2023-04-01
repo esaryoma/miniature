@@ -12,7 +12,8 @@ public class Character : MonoBehaviour
     [SerializeField] public int wounds;
     // resource for skills and abilities
     [SerializeField] public int resolve;
-    [SerializeField] public List<Status> statuses; 
+    [SerializeField] public List<Status> statuses;
+    [SerializeField] public List<Status> immunities; 
 
     public enum CharacterType 
     {
@@ -33,8 +34,13 @@ public class Character : MonoBehaviour
     public CharacterRace characterRace;
 
 
-    public void addToStatus(Status status) {
+    public List<Status> addToStatus(Status status) {
         statuses.Add(status);
+        return statuses;
+    }
+
+    public List<Status> getImmunities() {
+        return immunities;
     }
 
     // Start is called before the first frame update

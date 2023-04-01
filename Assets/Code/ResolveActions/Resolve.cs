@@ -10,12 +10,14 @@ public static class Resolve
         Dictionary<Character, int> dmgMap = new Dictionary<Character, int>();
 
         ResolvedResult result = new ResolvedResult();
-
+        Debug.Log("Actions received to resolve: " + actions.Count);
         foreach(PlayerAction action in actions) {
+            Debug.Log("Resolving action: " + action.skill.skillName);
             foreach(Effect effect in action.getSkillEffects()) {
                 switch(effect.effectType) 
                     {
                     case Effect.EffectType.Damage:
+                        Debug.Log("Resolving effect type: damage...");
                         addToDmg(effect, action.targets, dmgMap);
                         addToStatus(effect.status, action.targets, result);
                         break;
@@ -73,22 +75,27 @@ public static class Resolve
     private static int reduceDmgByEnemyTarget(int inflictedDmg, Character target, ResolvedResult result) {
         Enemy enemy = target as Enemy;
         int dmgLeftOver = inflictedDmg;
-        if (enemy.shieldPoints > 0) {
-            dmgLeftOver -= enemy.shieldPoints;
+        
+        if (enemy.defence > 0) {
+            dmgLeftOver -= enemy.defence;
+            result.addToDescription(target.charName + " defended for " + enemy.defence);
+        }
 
-            // remove enemy shields for the correct amount
+        if (dmgLeftOver > 0 && enemy.resolve > 0) {
+            dmgLeftOver -= enemy.resolve;
+            // remove enemy resolve for the correct amount
             if (dmgLeftOver <= 0) {
-                int originalShieldPoints = enemy.shieldPoints;
-                result.addToDescription(target.charName + " shielded with " + inflictedDmg + " shield points.");
-                enemy.shieldPoints -= inflictedDmg;
+                result.addToDescription(target.charName + " shielded with " + inflictedDmg + " resolve points.");
+                enemy.resolve -= inflictedDmg;
                 // no damage to actually inflict
                 return 0;
             } else if (dmgLeftOver > 0) {
-                result.addToDescription(target.charName + " shielded with " + enemy.shieldPoints + " shield points.");
-                enemy.shieldPoints = 0;
+                result.addToDescription(target.charName + " shielded with " + enemy.resolve + " resolve points.");
+                enemy.resolve = 0;
             }
         }
 
+        
         // TODO other damage negation...
         return dmgLeftOver;
     }
@@ -106,8 +113,13 @@ public static class Resolve
     private static void addToStatus(Status status, List<Character> targets, ResolvedResult result) {
         if (status != null) {
             foreach(Character target in targets) {
-                target.addToStatus(status);
-                addStatusToDescription(status, target, result);    
+                if (target.getImmunities() != null && target.getImmunities().Contains(status)) {
+                    Debug.Log("Character " + target.charName + " was immune to " + status.statusType);
+                    addImmunityToDescription(status, target, result);
+                } else 
+                    Debug.Log("Adding effect: " + status.statusType);
+                    target.addToStatus(status);
+                    addStatusToDescription(status, target, result);
             }
         }
     }
@@ -118,6 +130,10 @@ public static class Resolve
 
     private static void addStatusToDescription(Status status, Character target, ResolvedResult result) {
         result.addToDescription("Added status " + status.statusType + " to " + target.charName);
+    }
+
+    private static void addImmunityToDescription(Status status, Character target, ResolvedResult result) {
+        result.addToDescription(target.charName + " is immune to " + status.statusType + "!");
     }
 
 }

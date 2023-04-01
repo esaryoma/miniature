@@ -8,7 +8,12 @@ public class Status : MonoBehaviour
     [SerializeField] public int length;
     
     // a placeholder for now before we actually decide how to encode the resolve timing (start of characters turn, end of turn, when attacked / attacking)
-    [SerializeField] public string resolvedWhen;
+    public enum ResolveTiming {
+        StartOfTurn,
+        EndOfTurn
+    }
+    
+    [SerializeField] public ResolveTiming resolveTiming;
    
 
     // Start is called before the first frame update
