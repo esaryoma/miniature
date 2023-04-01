@@ -54,7 +54,7 @@ public class UnitCardUI : MonoBehaviour, IPointerClickHandler
         woundsField.text = enemy.wounds.ToString();
         enduranceField.text = enemy.endurance.ToString();
         resolveField.text = enemy.resolve.ToString();
-        shieldsField.text = "Shields " + enemy.shieldPoints.ToString();
+        shieldsField.text = "Defence " + enemy.defence.ToString();
 }
 
     public void OnPointerClick(PointerEventData eventData) // 3
