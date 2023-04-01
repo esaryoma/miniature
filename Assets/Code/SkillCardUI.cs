@@ -33,9 +33,9 @@ public class SkillCardUI : MonoBehaviour, IPointerClickHandler
 
         skillsSelected.Add(skillCard.skills[0]); //ALWAYS ADD BASIC SKILL (INDEX 0)
 
-        for (int i=1;i<skillUIs.Count;i++)
+        for (int i=0;i<skillUIs.Count;i++)
         {
-            if (skillUIs[i].gameObject.activeSelf && skillUIs[i].skillState == SkillUI.SkillState.Selected)
+            if (skillUIs[i].gameObject.activeSelf && (skillUIs[i].skillState == SkillUI.SkillState.Selected || skillUIs[i].skillState == SkillUI.SkillState.DisabledAndBought))
             {
                 skillsSelected.Add(skillUIs[i].GetComponent<SkillUI>().skill);
             }

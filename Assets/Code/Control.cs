@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.TextCore.Text;
+using UnityEditor;
 
 public class Control : MonoBehaviour
 {
@@ -24,7 +25,9 @@ public class Control : MonoBehaviour
     public enum UImode
     {
         PlayerTurn,
-        PlayerSkillCardCloseUp
+        PlayerSkillCardCloseUp,
+        UnitCardCloseUp,
+        PlayerSkillCardConfirmed
     }
 
     public UImode uiMode = UImode.PlayerTurn;
@@ -41,6 +44,7 @@ public class Control : MonoBehaviour
 
     public SkillCardUI skillCardUIcloseUp;
     public SkillCard skillCardInCloseUp;
+    public UnitCardUI unitCardUIcloseUp;
     public GameObject bgDimmer;
     public SkillCardUI selectedCardUI;
 
@@ -85,11 +89,12 @@ public class Control : MonoBehaviour
         currentPlayerEnduranceUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].endurance.ToString();
         currentPlayerResolveUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].resolve.ToString();
         currentPlayerWoundsUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].wounds.ToString();
+        Debug.Log(TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].charName.ToString() + " " + TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].resolve.ToString());
     }
 
     public void CloseCardCloseUp(bool skillsResolved = false)
     {
-        if (Control.control.uiMode == Control.UImode.PlayerSkillCardCloseUp)
+        if (Control.control.uiMode == Control.UImode.PlayerSkillCardCloseUp || Control.control.uiMode == Control.UImode.PlayerSkillCardConfirmed)
         {
             Control.control.uiMode = Control.UImode.PlayerTurn;
             skillCardUIcloseUp.CloseCloseUp(skillsResolved);
@@ -123,14 +128,34 @@ public class Control : MonoBehaviour
         resolvePromptText.text = "";
     }
 
+    public void InitializeUnitCardCloseUp(Enemy e)
+    { 
+        unitCardUIcloseUp.gameObject.SetActive(true);
+        unitCardUIcloseUp.enemy = e;
+        unitCardUIcloseUp.GetComponent<Image>().color = e.colorInUI;
+        unitCardUIcloseUp.GetComponent<UnitCardUI>().UpdateCard();
+        bgDimmer.SetActive(true);
+        uiMode = UImode.UnitCardCloseUp; 
+    }
+
+    public void CloseUnitCardCloseUp()
+    {
+        unitCardUIcloseUp.gameObject.SetActive(false);
+        uiMode = UImode.PlayerTurn;
+        bgDimmer.SetActive(false);
+    }
+
+
     public void InitializeEnemies()
     {
     foreach (Enemy e in enemies)
         {
             GameObject g = GameObject.Instantiate(unitCardUIPrefab, unitCardUIparent);
-            g.GetComponent<UnitCardUI>().character = e;
-            g.GetComponent<UnitCardUI>().charImage.sprite = e.characterSprite;
+            UnitCardUI u = g.GetComponent<UnitCardUI>();
+            u.enemy = e;
+            e.unitCardUI = u;
             g.GetComponent<Image>().color = e.colorInUI;
+            g.GetComponent<UnitCardUI>().UpdateCard();
         }
     }
 
@@ -269,6 +294,7 @@ public class Control : MonoBehaviour
     switch (skillConfirmButtonState)
         {
             case 0:
+            uiMode = UImode.PlayerSkillCardConfirmed;
             TurnTrackUI.turnTrackUI.actionDoneInCurrentTurn = true;
 
             resolveToBeAdded = (selectedCardUI.transform.GetSiblingIndex() + 1);
@@ -290,10 +316,12 @@ public class Control : MonoBehaviour
 
             List<Skill> skills = skillCardUIcloseUp.ReturnSelectedSkills();
 
+            Debug.Log("number of player actions " + skills.Count);
+
             List<Character> targets = new List<Character>();
             foreach (Enemy e in selectedEnemies)
             {
-                targets.Add(e as Character);
+                targets.Add(e as Character); 
             } 
 
             foreach (Skill skill in skills)
@@ -302,7 +330,7 @@ public class Control : MonoBehaviour
             }
 
             ResolvedResult resolvedResult = Resolve.resolve(playerActions);
-
+                 
             skillUseSummaryUI.summaryText.text = resolvedResult.description;
             break;
 
