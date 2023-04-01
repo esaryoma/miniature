@@ -26,7 +26,8 @@ public class Control : MonoBehaviour
     {
         PlayerTurn,
         PlayerSkillCardCloseUp,
-        UnitCardCloseUp
+        UnitCardCloseUp,
+        PlayerSkillCardConfirmed
     }
 
     public UImode uiMode = UImode.PlayerTurn;
@@ -88,11 +89,12 @@ public class Control : MonoBehaviour
         currentPlayerEnduranceUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].endurance.ToString();
         currentPlayerResolveUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].resolve.ToString();
         currentPlayerWoundsUItext.text = TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].wounds.ToString();
+        Debug.Log(TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].charName.ToString() + " " + TurnTrackUI.turnTrackUI.turnOrder[TurnTrackUI.turnTrackUI.currentTurnIndex].resolve.ToString());
     }
 
     public void CloseCardCloseUp(bool skillsResolved = false)
     {
-        if (Control.control.uiMode == Control.UImode.PlayerSkillCardCloseUp)
+        if (Control.control.uiMode == Control.UImode.PlayerSkillCardCloseUp || Control.control.uiMode == Control.UImode.PlayerSkillCardConfirmed)
         {
             Control.control.uiMode = Control.UImode.PlayerTurn;
             skillCardUIcloseUp.CloseCloseUp(skillsResolved);
@@ -292,6 +294,7 @@ public class Control : MonoBehaviour
     switch (skillConfirmButtonState)
         {
             case 0:
+            uiMode = UImode.PlayerSkillCardConfirmed;
             TurnTrackUI.turnTrackUI.actionDoneInCurrentTurn = true;
 
             resolveToBeAdded = (selectedCardUI.transform.GetSiblingIndex() + 1);
@@ -313,10 +316,12 @@ public class Control : MonoBehaviour
 
             List<Skill> skills = skillCardUIcloseUp.ReturnSelectedSkills();
 
+            Debug.Log("number of player actions " + skills.Count);
+
             List<Character> targets = new List<Character>();
             foreach (Enemy e in selectedEnemies)
             {
-                targets.Add(e as Character);
+                targets.Add(e as Character); 
             } 
 
             foreach (Skill skill in skills)
@@ -325,7 +330,7 @@ public class Control : MonoBehaviour
             }
 
             ResolvedResult resolvedResult = Resolve.resolve(playerActions);
-
+                 
             skillUseSummaryUI.summaryText.text = resolvedResult.description;
             break;
 

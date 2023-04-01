@@ -52,7 +52,7 @@ public class SkillUI : MonoBehaviour, IPointerClickHandler
             if (skillState == SkillState.NotSelected)
             {
                 SetState(SkillState.Selected);
-                GetComponent<Image>().color = new Color(Color.magenta.r, Color.magenta.g, Color.magenta.b, 0.5f);
+                GetComponent<Image>().color = new Color(Color.magenta.r, Color.magenta.g, Color.magenta.b, 0.5f); 
                 Control.control.players[Control.control.currentPlayerCharacterIndex].resolve = Control.control.players[Control.control.currentPlayerCharacterIndex].resolve - resolvePrice;
                 Control.control.UpdateCurrentCharView();
                 skillCardUI.CheckSkillAvailabilityInCloseUp();
