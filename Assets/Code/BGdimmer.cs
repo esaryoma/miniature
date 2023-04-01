@@ -19,6 +19,16 @@ public class BGdimmer : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData) // 3
     {       
-            Control.control.CloseCardCloseUp();
+        switch(Control.control.uiMode)
+        {
+            case Control.UImode.PlayerSkillCardCloseUp:
+                Control.control.CloseCardCloseUp();
+                break;
+
+            case Control.UImode.UnitCardCloseUp:
+                Control.control.CloseUnitCardCloseUp();
+                break;
+        }
+         
     }
 }

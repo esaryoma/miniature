@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.TextCore.Text;
+using UnityEditor;
 
 public class Control : MonoBehaviour
 {
@@ -24,7 +25,8 @@ public class Control : MonoBehaviour
     public enum UImode
     {
         PlayerTurn,
-        PlayerSkillCardCloseUp
+        PlayerSkillCardCloseUp,
+        UnitCardCloseUp
     }
 
     public UImode uiMode = UImode.PlayerTurn;
@@ -41,6 +43,7 @@ public class Control : MonoBehaviour
 
     public SkillCardUI skillCardUIcloseUp;
     public SkillCard skillCardInCloseUp;
+    public UnitCardUI unitCardUIcloseUp;
     public GameObject bgDimmer;
     public SkillCardUI selectedCardUI;
 
@@ -123,14 +126,34 @@ public class Control : MonoBehaviour
         resolvePromptText.text = "";
     }
 
+    public void InitializeUnitCardCloseUp(Enemy e)
+    { 
+        unitCardUIcloseUp.gameObject.SetActive(true);
+        unitCardUIcloseUp.enemy = e;
+        unitCardUIcloseUp.GetComponent<Image>().color = e.colorInUI;
+        unitCardUIcloseUp.GetComponent<UnitCardUI>().UpdateCard();
+        bgDimmer.SetActive(true);
+        uiMode = UImode.UnitCardCloseUp; 
+    }
+
+    public void CloseUnitCardCloseUp()
+    {
+        unitCardUIcloseUp.gameObject.SetActive(false);
+        uiMode = UImode.PlayerTurn;
+        bgDimmer.SetActive(false);
+    }
+
+
     public void InitializeEnemies()
     {
     foreach (Enemy e in enemies)
         {
             GameObject g = GameObject.Instantiate(unitCardUIPrefab, unitCardUIparent);
-            g.GetComponent<UnitCardUI>().character = e;
-            g.GetComponent<UnitCardUI>().charImage.sprite = e.characterSprite;
+            UnitCardUI u = g.GetComponent<UnitCardUI>();
+            u.enemy = e;
+            e.unitCardUI = u;
             g.GetComponent<Image>().color = e.colorInUI;
+            g.GetComponent<UnitCardUI>().UpdateCard();
         }
     }
 

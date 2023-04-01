@@ -44,6 +44,8 @@ public class Enemy : Character
 
     public Color colorInUI;
 
+    public UnitCardUI unitCardUI;
+
     // Start is called before the first frame update
     void Start()
     {
