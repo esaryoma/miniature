@@ -10,4 +10,9 @@
 * Fixed resolve tracking bug when selecting skills
 * Fixed move skillcard to left and add resolve points bug
 * Fixed the bug that you could attack many times in one turn
-* 
+* Added unit card info closeup
+
+* Next time: add reaction choices: what counter-reactions does the player want to select for the enemy reaction? (after the player has pressed confirm)
+* Do we show enemy values based on the player character selected or just the base values? Jere says we want to show both
+* Damage types
+* Add new UI graphics
