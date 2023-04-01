@@ -1,7 +1,13 @@
 4.3.2023:
-* Remove resolve when using an attack
+* Remove resolve when using an attack 
 * Move skillcard to left and add resolve points
 * After action you cannot do another in the same turn
 * At the start of a player turn, select character
 * Editor script for linking gameobjects under player
 * Move logic of losing Resolve to perhaps Player class
+
+1.4.2023:
+* Fixed resolve tracking bug when selecting skills
+* Fixed move skillcard to left and add resolve points bug
+* Fixed the bug that you could attack many times in one turn
+* 

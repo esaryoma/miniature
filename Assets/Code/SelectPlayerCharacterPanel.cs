@@ -44,7 +44,7 @@ public class SelectPlayerCharacterPanel : MonoBehaviour
 
     public void ButtonPressed(int n)
     {
-        TurnTrackUI.turnTrackUI.InitializePlayerTurn(Control.control.players[n]);
+        TurnTrackUI.turnTrackUI.InitializePlayerTurn(n);
         gameObject.SetActive(false);
     }
 }

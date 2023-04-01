@@ -273,7 +273,8 @@ public class Control : MonoBehaviour
 
             resolveToBeAdded = (selectedCardUI.transform.GetSiblingIndex() + 1);
             resolvePromptText.text = selectedCardUI.SkillCardName.text + " moved to first slot, you will gain " + (selectedCardUI.transform.GetSiblingIndex() + 1).ToString() + " resolve";
-            selectedCardUI.transform.SetAsFirstSibling();
+
+            MoveSkillCardToFirst();
 
             resolvePromptText.gameObject.SetActive(true);
 
@@ -319,10 +320,19 @@ public class Control : MonoBehaviour
     }
 
 
+    void MoveSkillCardToFirst()
+    {
+        selectedCardUI.transform.SetAsFirstSibling();
+        SkillCard s = selectedCardUI.skillCard;
+        Control.control.players[Control.control.currentPlayerCharacterIndex].skillCards.Remove(s);
+        Control.control.players[Control.control.currentPlayerCharacterIndex].skillCards.Insert(0, s);
+    }
+
+
     public void CheckIfReadyToConfirmSkills()
     {
         List<Skill> skills = skillCardUIcloseUp.ReturnSelectedSkills();
-        if (skills.Count > 0 && selectedEnemies.Count > 0)
+        if (!TurnTrackUI.turnTrackUI.actionDoneInCurrentTurn && skills.Count > 0 && selectedEnemies.Count > 0)
         {
             Control.control.confirmCharacterSelectionButton.gameObject.SetActive(true);
         }

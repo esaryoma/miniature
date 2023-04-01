@@ -108,11 +108,12 @@ public class TurnTrackUI : MonoBehaviour
         Control.control.UpdateCurrentCharView();
     }
 
-    public void InitializePlayerTurn(Player p)
+    public void InitializePlayerTurn(int n)
     {
-        for (int i = 0; i < p.skillCards.Count; i++)
+        Control.control.currentPlayerCharacterIndex = n;
+        for (int i = 0; i < Control.control.players[n].skillCards.Count; i++)
         {
-            Control.control.InitializeSkillCardUI(p, p.skillCards[i]);
+            Control.control.InitializeSkillCardUI(Control.control.players[n], Control.control.players[n].skillCards[i]);
         }
     }
 
