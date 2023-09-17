@@ -16,7 +16,7 @@ public class Effect : MonoBehaviour
     [SerializeField] public int pierceArmor;
     [SerializeField] public string freeText;
 
-     public enum TargetType
+    public enum TargetType
     {
         Friendly,
         Enemy,
